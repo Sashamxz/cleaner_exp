@@ -5,8 +5,8 @@ complect = {'DDR' : '4',
             'proc' : 'intel'}
 
 
-for quizNum in range(35):
-    qfile = open('complectq%s.txt' % (quizNum+1), 'w')
+for quizNum in range(5):
+    qfile = open('complectq%s.txt' % (quizNum + 1), 'w')
     answerKeyFile = open('complects_answer%s.txt' % (quizNum+1), 'w')
     #запись заголовка билета
     qfile.write('Name:\n\nDate: \n\nCourse: \n\n')
@@ -22,13 +22,13 @@ for quizNum in range(35):
         answer_option = wrong_answer +[corect_answer]
         random.shuffle(answer_option)
 
-        qfile.write('%s. chose answer %s\n' %(question_num +1, complect[question_num]) )
+        qfile.write('%s. chose answer %s\n' % (question_num +1, complect[question_num]) )
 
-        for i in range(2):
-            qfile.write( '%s. %s\n' % ('AB'[i], answer_option[i]))
-            qfile.write('\n')
-            # запись ключа файла в файл
-            answerKeyFile.write('%s. %s\n' % (question_num + 1, 'AB'[answer_option.index(corect_answer)]))
+    for i in range(2):
+        qfile.write( '%s. %s\n' % ('AB'[i], answer_option[i]))
+        qfile.write('\n')
+        # запись ключа файла в файл
+        answerKeyFile.write('%s. %s\n' % (question_num + 1, 'AB'[answer_option.index(corect_answer)]))
 
-            qfile.close()
-            answerKeyFile.close()
+        qfile.close()
+        answerKeyFile.close()
