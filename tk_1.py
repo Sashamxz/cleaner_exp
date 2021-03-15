@@ -43,32 +43,35 @@ def expancion():
 
 #Вызываем функции и охраняем получаный результат 
 
-def main():
+def open_folder():
     try:
         my_src()
         my_dts()
         expancion()
-        #cleaner(src_adr, dts_adr, expancion_adr)
+        
     except Exception as ex:
         mb.showerror("error",ex)
+    
 
+def main():
+    cleaner(open_folder)
 
 #Функционал
-def cleaner(main):
-    os.chdir(s_adr)
-    path_file = os.listdir(s_adr)
+def cleaner(open_folder):
+    os.chdir(src_adr)
+    path_file = os.listdir(src_adr)
     for file in path_file:
         if file.endswith(expancion_adr) and os.path.abspath(file) != dts_adr:
             #print(os.path.abspath(file))
-            shutil.move(os.path.abspath(file), d_adr)
+            shutil.move(os.path.abspath(file), dts_adr)
             print('file moved --- %s' % file)
-
+    
 
 #Поля
 ent_src = tk.Entry(root, width=60)
 ent_dst = tk.Entry(root, width=60)
 expancions_touch = tk.Entry(root, width = 20)
-but = tk.Button(root,  text="Старт", command = cleaner)
+but = tk.Button(root,  text="Старт", command = main)
 but.config( width= 11, height = 2)
 ent_dst_title = tk.Label (root, text = 'Введите адрес папки назначения') 
 ent_src_title = tk.Label (root, text = 'Введите путь к исходному каталогу') 
