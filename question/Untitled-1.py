@@ -1,7 +1,18 @@
-import time
+import socket
+import sys
 
-for i in range (100):
-    print("o curva")
-    time.sleep(3)
-    print("ja perdole")
-    time.sleep(3)
+sock = socket.socket()
+sock.connect(('192.168.1.22', 43000))
+# sock.send("hello".encode())
+# data = sock.recv(1024)
+
+while True:
+    message = input('Sladu inn skipun :').encode()
+    try :
+        sock.sendall(message)
+        print (sock.recv(1024))
+    except socket.error:
+        print ('Send failed')
+        sys.exit()
+
+print (data)
