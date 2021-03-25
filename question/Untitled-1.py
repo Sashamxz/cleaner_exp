@@ -7,7 +7,7 @@ sock.connect(('192.168.1.22', 43000))
 # data = sock.recv(1024)
 
 while True:
-    message = input('Sladu inn skipun :').encode()
+    message = input('Enter some laters :').encode()
     try :
         sock.sendall(message)
         print (sock.recv(1024))
@@ -15,4 +15,3 @@ while True:
         print ('Send failed')
         sys.exit()
 
-print (data)
