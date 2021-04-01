@@ -91,8 +91,12 @@ def show_expancion():
     window = tk.Toplevel()
     window.geometry('500x400')
     window.title('Определить расширение файла')
-    filename = askopenfilename()
-    print(filename)
+    var = StringVar()
+    e = Entry(master, textvariable=var)
+    b = Button(master, text="Browse",
+              command=lambda:var.set(tkFileDialog.askopenfilename()))
+    # filename = askopenfilename()
+    # print(filename)
     # os.chdir(src_adr)
     # list_file = os.listdir()
     # file_n = Entry
@@ -114,6 +118,8 @@ mainmenu.add_cascade(label="Файл",
                      menu=filemenu)
 mainmenu.add_cascade(label="Справка",
                      menu=helpmenu )
+e.pack(side=LEFT)
+b.pack(side=LEFT)
 
 
 
