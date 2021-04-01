@@ -28,7 +28,7 @@ ent_expancion.pack()
 
 
 
-# получаем адрес исходной папки и сохраняем в ! src_adr!
+# получаем адрес исходной папки и сохраняем в !src_adr!
 def my_src():
     if len(ent_src.get()) == 0:
         mb.showerror('warning',
