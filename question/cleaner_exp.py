@@ -84,8 +84,7 @@ def main():
     except Exception as ex:
         mb.showerror("error", ex)
         return 0
-    # if cleaner. == 1:
-    #     mb.showinfo("Perfect", "All files moved!" )
+    
 
 # Дополнительный функционал
 def exit_prog():
@@ -106,20 +105,13 @@ def show_expancion():
         
         
     
-    e = tk.Entry(window, textvariable=var)
-    b = tk.Button(window, text="Browse",command = _file_expancion)
+    ent = tk.Entry(window, textvariable=var)
+    back = tk.Button(window, text="Browse",command = _file_expancion)
      
-    e.pack(side=tk.TOP, pady =5, padx=5 )
-    b.pack(side=tk.TOP, pady=10)
+    ent.pack(side=tk.TOP, pady =5, padx=5 )
+    back.pack(side=tk.TOP, pady=10)
 
-    # filename = askopenfilename()
-    # print(filename)
-    # os.chdir(src_adr)
-    # list_file = os.listdir()
-    # file_n = Entry
-    # for file in list_file:    
-    #     ext = os.path.splitext(file_name)[1]
-
+    
 
 mainmenu = tk.Menu(root) 
 root.config(menu=mainmenu) 
