@@ -1,16 +1,17 @@
+
+import os, sys, shutil, glob, time, re
+from sys import argv
 import tkinter as tk
 from tkinter import messagebox as mb
 from tkinter.filedialog import askopenfilename
-import os, sys, shutil, glob, time, re
-from sys import argv
 
 root = tk.Tk()
 root.title("Сортировка файлов по расширению")
 root.geometry('600x500+200+100')
 
 # Поля
-ent_src = tk.Entry(root, width=60)
-ent_dst = tk.Entry(root, width=60)
+ent_src = tk.Entry(root, width=60 )
+ent_dst = tk.Entry(root, width=60 )
 ent_expancion = tk.Entry(root, width=20)
 
 ent_dst_title = tk.Label(root, text='Введите абсолютный путь к папке назначения:')
@@ -18,12 +19,12 @@ ent_src_title = tk.Label(root, text='Введите абсолютный пут�
 ent_expansion_title = tk.Label(root, text='Введите расширения файла, например - .txt : ')
 
 # Инициализация
-ent_src_title.pack()
-ent_src.pack()
+ent_src_title.pack(fill= tk.BOTH)
+ent_src.pack(fill=tk.BOTH, padx=10)
 ent_dst_title.pack()
-ent_dst.pack()
-ent_expansion_title.pack()
-ent_expancion.pack()
+ent_dst.pack(fill= tk.BOTH, padx=10)
+ent_expansion_title.pack(pady =1, padx=1)
+ent_expancion.pack( pady =5, padx=5)
 
 
 
@@ -78,9 +79,13 @@ def cleaner(src_adr, dst_adr, expancion_adr):
 def main():
     try:
         cleaner(my_src(), my_dts(), expancion())
+        mb.showinfo("Perfect", "All files moved!" )
+        return 1
     except Exception as ex:
         mb.showerror("error", ex)
-
+        return 0
+    # if cleaner. == 1:
+    #     mb.showinfo("Perfect", "All files moved!" )
 
 # Дополнительный функционал
 def exit_prog():
@@ -89,12 +94,24 @@ def exit_prog():
 #Определить расширение файла 
 def show_expancion():
     window = tk.Toplevel()
-    window.geometry('500x400')
+    window.geometry('400x400')
     window.title('Определить расширение файла')
-    var = StringVar()
-    e = Entry(master, textvariable=var)
-    b = Button(master, text="Browse",
-              command=lambda:var.set(tkFileDialog.askopenfilename()))
+    var = tk.StringVar
+    
+    def _file_expancion():
+        fiel_exp = askopenfilename()
+        _expancion = fiel_exp.rpartition('.')[-1] 
+        mb.showinfo(title='Расширение файла', 
+                    message= (' - .%s  ' %(_expancion)))  
+        
+        
+    
+    e = tk.Entry(window, textvariable=var)
+    b = tk.Button(window, text="Browse",command = _file_expancion)
+     
+    e.pack(side=tk.TOP, pady =5, padx=5 )
+    b.pack(side=tk.TOP, pady=10)
+
     # filename = askopenfilename()
     # print(filename)
     # os.chdir(src_adr)
@@ -108,7 +125,7 @@ mainmenu = tk.Menu(root)
 root.config(menu=mainmenu) 
 filemenu = tk.Menu(mainmenu, tearoff=0)
 filemenu.add_command(label="Открыть...")
-filemenu.add_command(label="Новый", command = show_expancion )
+filemenu.add_command(label="Узнать расширение", command = show_expancion )
 filemenu.add_command(label="Сохранить...")
 filemenu.add_command(label="Выход", command = exit_prog)
 
@@ -118,8 +135,6 @@ mainmenu.add_cascade(label="Файл",
                      menu=filemenu)
 mainmenu.add_cascade(label="Справка",
                      menu=helpmenu )
-e.pack(side=LEFT)
-b.pack(side=LEFT)
 
 
 
