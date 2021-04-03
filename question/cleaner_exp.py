@@ -86,7 +86,10 @@ def main():
         return 0
     
 
-# Дополнительный функционал
+# Дополнительный функционал:
+
+
+
 def exit_prog():
     sys.exit()                  
 
@@ -96,18 +99,22 @@ def show_expancion():
     window.geometry('400x400')
     window.title('Определить расширение файла')
     var = tk.StringVar
+    window_text=tk.Label(window,text='Выберите файл что бы узнать расширение' )
     
     def _file_expancion():
         fiel_exp = askopenfilename()
-        _expancion = fiel_exp.rpartition('.')[-1] 
-        mb.showinfo(title='Расширение файла', 
+        # _expancion = fiel_exp.rpartition('.')[-1] 
+        if len(fiel_exp) > 0:
+            _expancion = fiel_exp.rpartition('.')[-1]
+            mb.showinfo(title='Расширение файла', 
                     message= (' - .%s  ' %(_expancion)))  
-        
+        else:
+            pass
         
     
     ent = tk.Entry(window, textvariable=var)
     back = tk.Button(window, text="Browse",command = _file_expancion)
-     
+    window_text.pack(side=tk.TOP, pady =5, padx=5 )
     ent.pack(side=tk.TOP, pady =5, padx=5 )
     back.pack(side=tk.TOP, pady=10)
 
