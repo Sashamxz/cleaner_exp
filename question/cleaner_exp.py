@@ -1,3 +1,4 @@
+#!/bin/usr/env python3
 
 import os, sys, shutil, glob, time, re
 from sys import argv
@@ -73,27 +74,32 @@ def expancion():
 def cleaner(src_adr, dst_adr, expancion_adr):
     os.chdir(src_adr)
     path_file = os.listdir(src_adr)
-    for file in path_file:
-        if file.endswith(expancion_adr) and os.path.abspath(file) != dst_adr: # перебираем фалы по расширению 
-            shutil.move(os.path.abspath(file), dst_adr)
-            print('succeful')
-            print('file moved --- %s' % file)
-            
-# Вызываем функции и передаем  результат
+    for _file in path_file:
+        if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # перебираем фалы по расширению 
+            shutil.move(os.path.abspath(_file), dst_adr)
+            info = open('list_files.txt', 'a')
+            print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
+            print('succeful', file=info)
+            info.close()
 
+
+# Вызываем функции и передаем  результат
 def main():
     try:
         cleaner(my_src(), my_dts(), expancion())
-        mb.showinfo("Perfect", "All files moved!" )
+        mb.showinfo("Perfect", "All files moved! \
+                    See 'list_files.txt' in folder " )
         return 1
     except Exception as ex:
         mb.showerror("error", ex)
         return 0
     
 
+
+
+
+
 # Дополнительный функционал:
-
-
              
 
 #Определить расширение файла 
@@ -124,6 +130,7 @@ def show_expancion():
 def exit_prog():
     sys.exit()         
 
+#Определеяем ОС
 def winlin():
     platformf = sys.platform
     if platformf == "linux" or platformf == "linux2" :
@@ -133,7 +140,7 @@ def winlin():
         mb.showinfo("OS", "macOS")    # OS X
     
     elif platformf == "win32":
-        mb.showinfo("OS", "windows...") # Windows...
+        mb.showinfo("OS", "Windows...") # Windows...
 
 
 
@@ -143,9 +150,8 @@ root.config(menu=mainmenu)
 filemenu = tk.Menu(mainmenu, tearoff=0)
 filemenu.add_command(label="Открыть...")
 filemenu.add_command(label="Узнать расширение", command = show_expancion )
-filemenu.add_command(label="windows/linux", command = winlin)
+filemenu.add_command(label="win/li", command = winlin)
 filemenu.add_command(label="Выход", command = exit_prog)
-
 helpmenu = tk.Menu(mainmenu, tearoff=0)
 helpmenu.add_command(label="О программе")
 mainmenu.add_cascade(label="Файл",
