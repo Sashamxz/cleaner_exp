@@ -1,9 +1,13 @@
 
 import os, sys, shutil, glob, time, re
-from sys import argv
+from sys import argv,platform
 import tkinter as tk
 from tkinter import messagebox as mb
 from tkinter.filedialog import askopenfilename
+
+
+
+
 
 root = tk.Tk()
 root.title("Сортировка файлов по расширению")
@@ -89,9 +93,7 @@ def main():
 # Дополнительный функционал:
 
 
-
-def exit_prog():
-    sys.exit()                  
+             
 
 #Определить расширение файла 
 def show_expancion():
@@ -99,11 +101,10 @@ def show_expancion():
     window.geometry('400x400')
     window.title('Определить расширение файла')
     var = tk.StringVar
-    window_text=tk.Label(window,text='Выберите файл что бы узнать расширение' )
+    window_text=tk.Label(window,text='Выберите файл чтобы узнать расширение' )
     
     def _file_expancion():
         fiel_exp = askopenfilename()
-        # _expancion = fiel_exp.rpartition('.')[-1] 
         if len(fiel_exp) > 0:
             _expancion = fiel_exp.rpartition('.')[-1]
             mb.showinfo(title='Расширение файла', 
@@ -117,15 +118,31 @@ def show_expancion():
     window_text.pack(side=tk.TOP, pady =5, padx=5 )
     ent.pack(side=tk.TOP, pady =5, padx=5 )
     back.pack(side=tk.TOP, pady=10)
-
     
 
+def exit_prog():
+    sys.exit()         
+
+def winlin():
+    platform = platform.platform()
+    if platform == "linux" or platform == "linux2" :
+        mb.showinfo("OS", "Linux :)")   # linux
+    
+    elif platform == "darwin":
+        mb.showinfo("OS", "macOS")    # OS X
+    
+    elif platform == "win32":
+        mb.showinfo("OS", "windows...") # Windows...
+
+
+
+#Pack
 mainmenu = tk.Menu(root) 
 root.config(menu=mainmenu) 
 filemenu = tk.Menu(mainmenu, tearoff=0)
 filemenu.add_command(label="Открыть...")
 filemenu.add_command(label="Узнать расширение", command = show_expancion )
-filemenu.add_command(label="Сохранить...")
+filemenu.add_command(label="windows/linux", command = winlin)
 filemenu.add_command(label="Выход", command = exit_prog)
 
 helpmenu = tk.Menu(mainmenu, tearoff=0)
