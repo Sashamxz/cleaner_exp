@@ -1,6 +1,7 @@
 
 import os, sys, shutil, glob, time, re
-from sys import argv,platform
+from sys import argv
+from sys import platform
 import tkinter as tk
 from tkinter import messagebox as mb
 from tkinter.filedialog import askopenfilename
@@ -115,8 +116,8 @@ def show_expancion():
     
     ent = tk.Entry(window, textvariable=var)
     back = tk.Button(window, text="Browse",command = _file_expancion)
-    window_text.pack(side=tk.TOP, pady =5, padx=5 )
-    ent.pack(side=tk.TOP, pady =5, padx=5 )
+    window_text.pack(side=tk.TOP, pady=5, padx=5 )
+    ent.pack(side=tk.TOP, pady=5, padx=5 )
     back.pack(side=tk.TOP, pady=10)
     
 
@@ -124,14 +125,14 @@ def exit_prog():
     sys.exit()         
 
 def winlin():
-    platform = platform.platform()
-    if platform == "linux" or platform == "linux2" :
+    platformf = sys.platform
+    if platformf == "linux" or platformf == "linux2" :
         mb.showinfo("OS", "Linux :)")   # linux
     
-    elif platform == "darwin":
+    elif platformf == "darwin":
         mb.showinfo("OS", "macOS")    # OS X
     
-    elif platform == "win32":
+    elif platformf == "win32":
         mb.showinfo("OS", "windows...") # Windows...
 
 
