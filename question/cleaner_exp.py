@@ -81,6 +81,13 @@ def cleaner(src_adr, dst_adr, expancion_adr):
             print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
             print('succeful', file=info)
             info.close()
+        while True:
+            if  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
+                for _file in path_file:
+                    shutil.move(os.path.abspath(_file), dst_adr)
+                    print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
+                    return 2           
+                               
 
 
 # Вызываем функции и передаем  результат
@@ -150,7 +157,7 @@ root.config(menu=mainmenu)
 filemenu = tk.Menu(mainmenu, tearoff=0)
 filemenu.add_command(label="Открыть...")
 filemenu.add_command(label="Узнать расширение", command = show_expancion )
-filemenu.add_command(label="win/li", command = winlin)
+filemenu.add_command(label="win/lin/mack", command = winlin)
 filemenu.add_command(label="Выход", command = exit_prog)
 helpmenu = tk.Menu(mainmenu, tearoff=0)
 helpmenu.add_command(label="О программе")
@@ -176,7 +183,7 @@ def help_user():
     каталога можно указывать \picture\\file.png '''
     
     text_help = tk.Label(window ,text=about)
-    text_help.pack(side=tk.LEFT, expand=True, pady=10)
+    text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
     window.mainloop()
 
 helpmenu.add_command(label="Помощь", command = help_user)
