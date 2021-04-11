@@ -10,7 +10,7 @@ from tkinter.filedialog import askopenfilename
 
 
 
-
+# Основа 
 root = tk.Tk()
 root.title("Сортировка файлов по расширению")
 root.geometry('600x500+200+100')
@@ -22,7 +22,7 @@ ent_expancion = tk.Entry(root, width=20)
 
 ent_dst_title = tk.Label(root, text='Введите абсолютный путь к папке назначения:')
 ent_src_title = tk.Label(root, text='Введите абсолютный путь к исходному каталогу:')
-ent_expansion_title = tk.Label(root, text='Введите расширения файла, например - .txt : ')
+ent_expansion_title = tk.Label(root, text='Введите расширения файла, например - (.txt) : ')
 
 # Инициализация
 ent_src_title.pack(fill= tk.BOTH)
@@ -73,21 +73,24 @@ def expancion():
 # Сортировщик  файлов
 def cleaner(src_adr, dst_adr, expancion_adr):
     os.chdir(src_adr)
-    path_file = os.listdir(src_adr)
-    for _file in path_file:
-        if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # перебираем фалы по расширению 
-            shutil.move(os.path.abspath(_file), dst_adr)
-            info = open('list_files.txt', 'a')
-            print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
-            print('succeful', file=info)
-            info.close()
-        while True:
-            if  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
-                for _file in path_file:
+    path_file = os.walk(src_adr) #перебираем фалы 
+    for rot, dirs, files in path_file:    
+        for _dirs in dirs:    
+            os.chdir(_dirs)
+            for _file in files:
+                if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
                     shutil.move(os.path.abspath(_file), dst_adr)
+                    info = open('list_files.txt', 'a')
                     print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
-                    return 2           
-                               
+                    print('succeful', file=info)
+                    info.close()
+                
+                elif  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
+                    for _file in path_file:
+                        shutil.move(os.path.abspath(_file), dst_adr)
+                        print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
+                        return 4           
+                                
 
 
 # Вызываем функции и передаем  результат
@@ -178,9 +181,9 @@ def help_user():
     about = '''Абсолютный путь очень точно показывает где именно находится \n
     файл, а относительный должен иметь обязательную привязку к какой-либо \n
     отправной точкe, относительно которой и укзывается путь. \n
-    Например у нас есть картинка file.png на диске D:\,  Абсолютный \n
-    путь к ней будет D:\picture\\file.png, а относительно корневого \n
-    каталога можно указывать \picture\\file.png '''
+    Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
+    путь к ней будет D:\\picture\\file.png, а относительно корневого \n
+    каталога можно указывать \\picture\\file.png '''
     
     text_help = tk.Label(window ,text=about)
     text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
@@ -191,4 +194,7 @@ but = tk.Button(root, text="Старт",bg="lightblue" , command=main )
 but.config(width=11, height=2)
 but.place(x=500, y=50)
 but.pack()
+
+
+
 root.mainloop()
