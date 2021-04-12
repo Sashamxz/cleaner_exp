@@ -2,7 +2,8 @@ import logging, sys
 from logging import FileHandler
 
 class Logger_get(self):
-    def __init__:
+    def __init__():
+        pass
     self.logger = logger
     self.FORMAT= FORMAT
     logger = logging.getLogger(__name__)

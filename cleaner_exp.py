@@ -47,9 +47,7 @@ def my_src():
     if len(ent_src.get()) == 0:
         mb.showerror('warning',
                      'Поле 1 не должно быть пустым')
-        time.sleep(150) 
-        my_src()  
-                   
+        
     else:
         src_adr = ent_src.get()
         return src_adr
@@ -60,8 +58,6 @@ def my_dts():
     if len(ent_dst.get()) == 0:
         mb.showerror('warning',
                      'Поле 2 не должно быть пустым')
-        
-        
     else:
         dst_adr = ent_dst.get()
         return dst_adr
