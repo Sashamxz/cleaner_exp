@@ -1,4 +1,6 @@
 #!/bin/usr/env python3
+#verion 0.2.6
+#Програма для перемещения файлов по расширению из исходной папки(src) в папку назначения(dst) 
 
 import os, sys, shutil, glob, time, re
 from sys import argv
@@ -6,6 +8,7 @@ from sys import platform
 import tkinter as tk
 from tkinter import messagebox as mb
 from tkinter.filedialog import askopenfilename
+import log_cheker 
 
 
 
@@ -35,12 +38,14 @@ ent_expancion.pack( pady =5, padx=5)
 
 
 
+
+
 # получаем адрес исходной папки и сохраняем в !src_adr!
 def my_src():
     if len(ent_src.get()) == 0:
         mb.showerror('warning',
                      'Поле 1 не должно быть пустым')
-                     
+        my_src()             
     else:
         src_adr = ent_src.get()
         return src_adr
@@ -51,7 +56,7 @@ def my_dts():
     if len(ent_dst.get()) == 0:
         mb.showerror('warning',
                      'Поле 2 не должно быть пустым')
-
+        my_dts()
     else:
         dst_adr = ent_dst.get()
         return dst_adr
@@ -62,6 +67,7 @@ def expancion():
     if len(ent_expancion.get()) == 0:
         mb.showerror('warning',
                      'Поле 3 не должно быть пустым')
+        expancion()
     else:
         expancion_adr = ent_expancion.get()
         return expancion_adr
@@ -77,9 +83,11 @@ def cleaner(src_adr, dst_adr, expancion_adr):
     for _file in path_file:
         if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
             shutil.move(os.path.abspath(_file), dst_adr)
-            info = open('list_files.txt', 'a')
-            print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
-            print('succeful', file=info)
+            inform = open('list_files.txt', 'a')
+            log.info('file -%s moved from --- %s || to--- %s' %(_file,src_adr,dst_adr), file=info )
+            
+            # print('file -%s moved from --- %s || to--- %s' %(_file,src_adr,dst_adr), file=info )
+            # print('succeful', file=info)
             info.close()
             
         elif  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
