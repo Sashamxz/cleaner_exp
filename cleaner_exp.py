@@ -2,13 +2,13 @@
 #verion 0.2.6
 #Програма для перемещения файлов по расширению из исходной папки(src) в папку назначения(dst) 
 
-import os, sys, shutil, glob, time, re
+import os, sys, shutil, glob, time, re, logging
+import tkinter as tk
 from sys import argv
 from sys import platform
-import tkinter as tk
 from tkinter import messagebox as mb
 from tkinter.filedialog import askopenfilename
-import log_cheker 
+from logging import FileHandler
 
 
 
@@ -35,8 +35,10 @@ ent_dst.pack(fill= tk.BOTH, padx=10)
 ent_expansion_title.pack(pady =1, padx=1)
 ent_expancion.pack( pady =5, padx=5)
 
-
-
+#Логирование
+logger = logging.getLogger(__name__)
+FORMAT = '%(asctime)s %(processName)s\%(name)-8s %(levelname)s: %(message)s'
+logging.basicConfig(format = FORMAT, level='INFO', filename = 'log.txt' )
 
 
 
@@ -77,24 +79,23 @@ def expancion():
 
 
 # Сортировщик  файлов
+
 def cleaner(src_adr, dst_adr, expancion_adr):
     os.chdir(src_adr)
     path_file = os.listdir(src_adr) #проходим по всем каталогам
     for _file in path_file:
         if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
             shutil.move(os.path.abspath(_file), dst_adr)
-            inform = open('list_files.txt', 'a')
-            log.info('file -%s moved from --- %s || to--- %s' %(_file,src_adr,dst_adr), file=info )
-            
-            # print('file -%s moved from --- %s || to--- %s' %(_file,src_adr,dst_adr), file=info )
+            #inform = open('list_files.txt', 'a')
+            logging.info('file -%s moved from --- %s || to--- %s' %(_file,src_adr,dst_adr))
             # print('succeful', file=info)
-            info.close()
+            #inform.close()
             
-        elif  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
-            for _file in path_file:
-                shutil.move(os.path.abspath(_file), dst_adr)
-                print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
-                return 4      
+        # elif  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
+        #     for _file in path_file:
+        #         shutil.move(os.path.abspath(_file), dst_adr)
+        #         print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=inform )
+        #         return 4      
             
                                 
 
