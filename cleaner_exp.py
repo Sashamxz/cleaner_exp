@@ -73,23 +73,21 @@ def expancion():
 # Сортировщик  файлов
 def cleaner(src_adr, dst_adr, expancion_adr):
     os.chdir(src_adr)
-    path_file = os.walk(src_adr) #перебираем фалы 
-    for rot, dirs, files in path_file:    
-        for _dirs in dirs:    
-            os.chdir(_dirs)
-            for _file in files:
-                if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
-                    shutil.move(os.path.abspath(_file), dst_adr)
-                    info = open('list_files.txt', 'a')
-                    print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
-                    print('succeful', file=info)
-                    info.close()
-                
-                elif  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
-                    for _file in path_file:
-                        shutil.move(os.path.abspath(_file), dst_adr)
-                        print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
-                        return 4           
+    path_file = os.listdir(src_adr) #проходим по всем каталогам
+    for _file in path_file:
+        if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
+            shutil.move(os.path.abspath(_file), dst_adr)
+            info = open('list_files.txt', 'a')
+            print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
+            print('succeful', file=info)
+            info.close()
+            
+        elif  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
+            for _file in path_file:
+                shutil.move(os.path.abspath(_file), dst_adr)
+                print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=info )
+                return 4      
+            
                                 
 
 
