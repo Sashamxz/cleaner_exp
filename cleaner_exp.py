@@ -37,8 +37,8 @@ ent_expancion.pack( pady =5, padx=5)
 
 #Логирование
 logger = logging.getLogger(__name__)
-FORMAT = '%(asctime)s %(processName)s\%(name)-8s %(levelname)s: %(message)s'
-logging.basicConfig(format = FORMAT, level='INFO', filename = 'log.txt' )
+FORMAT = '%(asctime)s - %(message)s'
+logging.basicConfig(format = FORMAT, level=logging.INFO, filename = 'log.txt' )
 
 
 
@@ -47,7 +47,9 @@ def my_src():
     if len(ent_src.get()) == 0:
         mb.showerror('warning',
                      'Поле 1 не должно быть пустым')
-        my_src()             
+        time.sleep(150) 
+        my_src()  
+                   
     else:
         src_adr = ent_src.get()
         return src_adr
@@ -58,7 +60,8 @@ def my_dts():
     if len(ent_dst.get()) == 0:
         mb.showerror('warning',
                      'Поле 2 не должно быть пустым')
-        my_dts()
+        
+        
     else:
         dst_adr = ent_dst.get()
         return dst_adr
@@ -68,8 +71,7 @@ def my_dts():
 def expancion():
     if len(ent_expancion.get()) == 0:
         mb.showerror('warning',
-                     'Поле 3 не должно быть пустым')
-        expancion()
+                     'Поле 3 не должно быть пустым') 
     else:
         expancion_adr = ent_expancion.get()
         return expancion_adr
@@ -86,16 +88,13 @@ def cleaner(src_adr, dst_adr, expancion_adr):
     for _file in path_file:
         if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
             shutil.move(os.path.abspath(_file), dst_adr)
-            #inform = open('list_files.txt', 'a')
             logging.info('file -%s moved from --- %s || to--- %s' %(_file,src_adr,dst_adr))
-            # print('succeful', file=info)
-            #inform.close()
             
-        # elif  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
-        #     for _file in path_file:
-        #         shutil.move(os.path.abspath(_file), dst_adr)
-        #         print('file -%s moved from --- %s to--- %s' %(_file,src_adr,dst_adr), file=inform )
-        #         return 4      
+        elif  expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
+            for _file in path_file:
+                shutil.move(os.path.abspath(_file), dst_adr)
+                logging.info('file -%s moved from --- %s || to--- %s' %(_file,src_adr,dst_adr))
+                return 4      
             
                                 
 
