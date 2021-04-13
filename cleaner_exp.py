@@ -84,11 +84,11 @@ def cleaner(src_adr, dst_adr, expancion_adr):
     for _file in path_file:
         if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
             shutil.move(os.path.abspath(_file), dst_adr)
-            logging.info('file -%s  moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
+            logging.info('file -%s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
             
         elif expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
             shutil.move(os.path.abspath(_file), dst_adr)
-            logging.info('file -%s moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
+            logging.info('file -%s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
             return 4      
         
                                 
