@@ -89,8 +89,8 @@ def cleaner(src_adr, dst_adr, expancion_adr):
         elif expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
             shutil.move(os.path.abspath(_file), dst_adr)
             logging.info('file -%s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
-            return 4      
-        
+                 
+    
                                 
 
 
@@ -98,8 +98,8 @@ def cleaner(src_adr, dst_adr, expancion_adr):
 def main():
     try:
         cleaner(my_src(), my_dts(), expancion())
-        mb.showinfo("Perfect", "All files moved! \
-                    See 'list_files.txt' in folder " )
+        mb.showinfo("Perfect", "All files moved! \n \
+                  \n See 'log.txt' for details ")
         return 1
     except Exception as ex:
         mb.showerror("error", ex)
