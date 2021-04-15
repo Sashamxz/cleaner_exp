@@ -19,21 +19,21 @@ root.title("Сортировка файлов по расширению")
 root.geometry('600x500+200+100')
 
 # Поля
-ent_src = tk.Entry(root, width=60 )
-ent_dst = tk.Entry(root, width=60 )
-ent_expancion = tk.Entry(root, width=20)
+ent_src = tk.Entry(root, width=70 )
+ent_dst = tk.Entry(root, width=70 )
+ent_expancion = tk.Entry(root, width=70)
 
-ent_dst_title = tk.Label(root, text='Введите абсолютный путь к папке назначения:')
+ent_dst_title = tk.Label(root, text='Введите абсолютный путь к каталогу назначения:')
 ent_src_title = tk.Label(root, text='Введите абсолютный путь к исходному каталогу:')
-ent_expansion_title = tk.Label(root, text='Введите расширения файла, например - (.txt) : ')
+ent_expansion_title = tk.Label(root, text='Введите расширения файла, например - (.txt) или " * " что бы выбрать все файлы: ')
 
 # Инициализация
-ent_src_title.pack(fill= tk.BOTH)
-ent_src.pack(fill=tk.BOTH, padx=10)
-ent_dst_title.pack()
-ent_dst.pack(fill= tk.BOTH, padx=10)
-ent_expansion_title.pack(pady =1, padx=1)
-ent_expancion.pack( pady =5, padx=5)
+ent_src_title.grid(column=0, row=2, padx=10, sticky=tk.W)
+ent_src.grid(column=0, row=3, padx=10, sticky=tk.W)
+ent_dst_title.grid(column=0, row=4, padx=10, sticky=tk.W)
+ent_dst.grid(column=0, row=5, padx=10, sticky=tk.W)
+ent_expansion_title.grid(column=0, row=6, padx=10, sticky=tk.W)
+ent_expancion.grid(column=0, row=7, padx=10, sticky=tk.W)
 
 #Логирование
 logger = logging.getLogger(__name__)
@@ -119,7 +119,7 @@ def show_expancion():
     window.geometry('400x400')
     window.title('Определить расширение файла')
     var = tk.StringVar
-    window_text=tk.Label(window,text='Выберите файл чтобы узнать расширение' )
+    window_text=tk.Label(window,text='Выберите файл чтобы узнать его расширение' )
     
     def _file_expancion():
         fiel_exp = askopenfilename()
@@ -191,10 +191,9 @@ def help_user():
     window.mainloop()
 
 helpmenu.add_command(label="Помощь", command = help_user)
-but = tk.Button(root, text="Старт",bg="lightblue" , command=main )
-but.config(width=11, height=2)
-but.place(x=500, y=50)
-but.pack()
+but = tk.Button(root, text="Старт",bg="lightgreen" , command=main )
+but.config(width=9, height=2)
+but.place(x=480, y=20)
 
 
 
