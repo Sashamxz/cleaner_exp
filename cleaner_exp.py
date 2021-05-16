@@ -1,8 +1,14 @@
 #!/bin/usr/env python3
-#verion 0.2.6
+#verion 0.2.9
 #Програма для перемещения файлов по расширению из исходной папки(src) в папку назначения(dst) 
 
-import os, sys, shutil, glob, time, re, logging
+import os
+import sys
+import glob
+import time
+import re
+import logging
+import shutil
 import tkinter as tk
 from sys import argv
 from sys import platform
@@ -11,21 +17,23 @@ from tkinter.filedialog import askopenfilename
 from logging import FileHandler
 
 
+version = "0.2.9"
 
 
-# Основа 
+# Главное окно
 root = tk.Tk()
-root.title("Сортировка файлов по расширению")
+root.title('Сортировка файлов по расширению')
 root.geometry('600x500+200+100')
 
-# Поля
-ent_src = tk.Entry(root, width=70 )
-ent_dst = tk.Entry(root, width=70 )
-ent_expancion = tk.Entry(root, width=70)
 
+# Поля
+ent_src = tk.Entry(root, width=70 ) #Поле ввода исходного каталога
+ent_dst = tk.Entry(root, width=70 ) #Поле ввода  каталога назначения
+ent_expancion = tk.Entry(root, width=70) #Поле ввода расширения
 ent_dst_title = tk.Label(root, text='Введите абсолютный путь к каталогу назначения:')
 ent_src_title = tk.Label(root, text='Введите абсолютный путь к исходному каталогу:')
 ent_expansion_title = tk.Label(root, text='Введите расширения файла, например - (.txt) или " * " что бы выбрать все файлы: ')
+
 
 # Инициализация
 ent_src_title.grid(column=0, row=2, padx=10, sticky=tk.W)
@@ -35,10 +43,12 @@ ent_dst.grid(column=0, row=5, padx=10, sticky=tk.W)
 ent_expansion_title.grid(column=0, row=6, padx=10, sticky=tk.W)
 ent_expancion.grid(column=0, row=7, padx=10, sticky=tk.W)
 
+
 #Логирование
 logger = logging.getLogger(__name__)
 FORMAT = '%(asctime)s - %(message)s'
-logging.basicConfig(format = FORMAT, level=logging.INFO, filename = 'log.txt' )
+logging.basicConfig(format = FORMAT, level=logging.INFO, filename = 'log.txt' ) 
+
 
 
 
@@ -73,14 +83,10 @@ def expancion():
         return expancion_adr
 
 
-
-
-
 # Сортировщик  файлов
-
 def cleaner(src_adr, dst_adr, expancion_adr):
     os.chdir(src_adr)
-    path_file = os.listdir(src_adr) #проходим по всем каталогам
+    path_file = os.listdir(src_adr) #список файлов
     for _file in path_file:
         if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
             shutil.move(os.path.abspath(_file), dst_adr)
@@ -90,29 +96,20 @@ def cleaner(src_adr, dst_adr, expancion_adr):
             shutil.move(os.path.abspath(_file), dst_adr)
             logging.info('file -%s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
                  
-    
-                                
-
-
+ 
 # Вызываем функции и передаем  результат
 def main():
     try:
         cleaner(my_src(), my_dts(), expancion())
-        mb.showinfo("Perfect", "All files moved! \n \
-                  \n See 'log.txt' for details ")
+        mb.showinfo('Perfect', 'All files moved! \n \
+                  \n See "log.txt" for details ')
         return 1
     except Exception as ex:
-        mb.showerror("error", ex)
+        mb.showerror('error', ex)
         return 0
     
 
-
-
-
-
-# Дополнительный функционал:
-             
-
+#Дополнительный функционал:
 #Определить расширение файла 
 def show_expancion():
     window = tk.Toplevel()
@@ -136,10 +133,12 @@ def show_expancion():
     window_text.pack(side=tk.TOP, pady=5, padx=5 )
     ent.pack(side=tk.TOP, pady=5, padx=5 )
     back.pack(side=tk.TOP, pady=10)
-    
 
+
+#Меню/выход
 def exit_prog():
     sys.exit()         
+
 
 #Определеяем ОС
 def winlin():
@@ -164,11 +163,8 @@ filemenu.add_command(label="Узнать расширение", command = show_e
 filemenu.add_command(label="win/lin/mack", command = winlin)
 filemenu.add_command(label="Выход", command = exit_prog)
 helpmenu = tk.Menu(mainmenu, tearoff=0)
-helpmenu.add_command(label="О программе")
-mainmenu.add_cascade(label="Файл",
-                     menu=filemenu)
-mainmenu.add_cascade(label="Справка",
-                     menu=helpmenu )
+mainmenu.add_cascade(label="Файл", menu=filemenu)
+mainmenu.add_cascade(label="Справка", menu=helpmenu )
 
 
 
@@ -178,18 +174,27 @@ def help_user():
     window = tk.Toplevel()
     window.geometry('500x400')
     window.title('Help')
-    
     about = '''Абсолютный путь очень точно показывает где именно находится \n
     файл, а относительный должен иметь обязательную привязку к какой-либо \n
     отправной точкe, относительно которой и укзывается путь. \n
     Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
     путь к ней будет D:\\picture\\file.png, а относительно корневого \n
     каталога можно указывать \\picture\\file.png '''
-    
     text_help = tk.Label(window ,text=about)
     text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
     window.mainloop()
 
+
+def about_prog():
+    window = tk.Toplevel()
+    window.geometry('500x400')
+    window.title('About')
+    about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(version)
+    text_help = tk.Label(window ,text=about)
+    text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
+    window.mainloop()
+
+helpmenu.add_command(label="О программе", command=about_prog)
 helpmenu.add_command(label="Помощь", command = help_user)
 but = tk.Button(root, text="Старт",bg="lightgreen" , command=main )
 but.config(width=9, height=2)
