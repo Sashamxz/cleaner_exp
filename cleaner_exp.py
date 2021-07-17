@@ -13,7 +13,7 @@ from tkinter.filedialog import askopenfilename
 from logging import FileHandler
 
 
-__version = "0.2.9"
+__version = "0.3.1"
 
 
 # Главное окно
