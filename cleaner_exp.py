@@ -4,26 +4,22 @@
 
 import os
 import sys
-import glob
 import time
-import re
 import logging
 import shutil
 import tkinter as tk
-from sys import argv
-from sys import platform
 from tkinter import messagebox as mb
 from tkinter.filedialog import askopenfilename
 from logging import FileHandler
 
 
-version = "0.2.9"
+__version = "0.2.9"
 
 
 # Главное окно
 root = tk.Tk()
 root.title('Сортировка файлов по расширению')
-root.geometry('600x500+200+100')
+root.geometry('700x600+200+100')
 
 
 # Поля
@@ -109,7 +105,7 @@ def main():
         return 0
     
 
-#Дополнительный функционал:
+#############################Дополнительный функционал:
 #Определить расширение файла 
 def show_expancion():
     window = tk.Toplevel()
@@ -172,7 +168,7 @@ mainmenu.add_cascade(label="Справка", menu=helpmenu )
 
 def help_user():
     window = tk.Toplevel()
-    window.geometry('500x400')
+    window.geometry('600x400')
     window.title('Help')
     about = '''Абсолютный путь очень точно показывает где именно находится \n
     файл, а относительный должен иметь обязательную привязку к какой-либо \n
@@ -187,9 +183,9 @@ def help_user():
 
 def about_prog():
     window = tk.Toplevel()
-    window.geometry('500x400')
+    window.geometry('600x400')
     window.title('About')
-    about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(version)
+    about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(__version)
     text_help = tk.Label(window ,text=about)
     text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
     window.mainloop()
@@ -197,8 +193,8 @@ def about_prog():
 helpmenu.add_command(label="О программе", command=about_prog)
 helpmenu.add_command(label="Помощь", command = help_user)
 but = tk.Button(root, text="Старт",bg="lightgreen" , command=main )
-but.config(width=9, height=2)
-but.place(x=480, y=20)
+but.config(width=9, height=2, padx=10, pady=10)
+but.place(x=580, y=20)
 
 
 
