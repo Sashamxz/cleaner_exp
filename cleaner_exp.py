@@ -48,39 +48,58 @@ logging.basicConfig(format = FORMAT, level=logging.INFO, filename = 'log.txt' )
 
 
 
-# получаем адрес исходной папки и сохраняем в !src_adr!
-def my_src():
-    if len(ent_src.get()) == 0:
+def get_addr(ent_adr):
+    if len(ent_adr.get()) == 0:
         mb.showerror('warning',
-                     'Поле 1 не должно быть пустым')
+                     'Поле  не должно быть пустым')
+    else:
+        ent_adr = ent_adr.get()
+        return ent_adr
+
+
+def take_data(func):   
+    def wrapper():    
+        src_adr = get_addr(ent_src)
+        dts_adr = get_addr(ent_dst)
+        expancion_adr = get_addr(ent_expancion)
+        func(src_adr,dts_adr,expancion_adr)
         
-    else:
-        src_adr = ent_src.get()
-        return src_adr
+    return wrapper
+
+# # получаем адрес исходной папки и сохраняем в !src_adr!
+# def my_src():
+#     if len(ent_src.get()) == 0:
+#         mb.showerror('warning',
+#                      'Поле 1 не должно быть пустым')
+        
+#     else:
+#         src_adr = ent_src.get()
+#         return src_adr
 
 
-# получаем адрес назначения и сохраняем в !dts_adr!
-def my_dts():
-    if len(ent_dst.get()) == 0:
-        mb.showerror('warning',
-                     'Поле 2 не должно быть пустым')
-    else:
-        dst_adr = ent_dst.get()
-        return dst_adr
+# # получаем адрес назначения и сохраняем в !dts_adr!
+# def my_dts():
+#     if len(ent_dst.get()) == 0:
+#         mb.showerror('warning',
+#                      'Поле 2 не должно быть пустым')
+#     else:
+#         dst_adr = ent_dst.get()
+#         return dst_adr
 
 
-# получаем расширение назначения и сохраняем в !expancion_adr!
-def expancion():
-    if len(ent_expancion.get()) == 0:
-        mb.showerror('warning',
-                     'Поле 3 не должно быть пустым') 
-    else:
-        expancion_adr = ent_expancion.get()
-        return expancion_adr
+# # получаем расширение назначения и сохраняем в !expancion_adr!
+# def expancion():
+#     if len(ent_expancion.get()) == 0:
+#         mb.showerror('warning',
+#                      'Поле 3 не должно быть пустым') 
+#     else:
+#         expancion_adr = ent_expancion.get()
+#         return expancion_adr
 
 
 # Сортировщик  файлов
-def cleaner(src_adr, dst_adr, expancion_adr):
+@take_data
+def cleaner(src_adr,dst_adr,expancion_adr):
     os.chdir(src_adr)
     path_file = os.listdir(src_adr) #список файлов
     for _file in path_file:
@@ -92,11 +111,12 @@ def cleaner(src_adr, dst_adr, expancion_adr):
             shutil.move(os.path.abspath(_file), dst_adr)
             logging.info('file -%s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
                  
- 
+
 # Вызываем функции и передаем  результат
 def main():
     try:
-        cleaner(my_src(), my_dts(), expancion())
+        
+        cleaner()
         mb.showinfo('Perfect', 'All files moved! \n \
                   \n See "log.txt" for details ')
         return 1

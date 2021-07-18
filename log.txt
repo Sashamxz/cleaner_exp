@@ -1,0 +1,9 @@
+2021-07-18 09:43:32,537 - file -2.mp3    moved || from --- /home/req/test/123/ || to--- /home/req/test/
+2021-07-18 09:43:32,537 - file -3.mp3    moved || from --- /home/req/test/123/ || to--- /home/req/test/
+2021-07-18 09:43:32,537 - file -4.mp3    moved || from --- /home/req/test/123/ || to--- /home/req/test/
+2021-07-18 09:47:59,312 - file -qwe.exe    moved || from --- /home/req/test/123/ || to--- /home/req/test/
+2021-07-18 09:47:59,312 - file -2.mp3    moved || from --- /home/req/test/123/ || to--- /home/req/test/
+2021-07-18 09:47:59,312 - file -buffer    moved || from --- /home/req/test/123/ || to--- /home/req/test/
+2021-07-18 09:47:59,312 - file -3.mp3    moved || from --- /home/req/test/123/ || to--- /home/req/test/
+2021-07-18 09:47:59,312 - file -4.mp3    moved || from --- /home/req/test/123/ || to--- /home/req/test/
+2021-07-18 09:47:59,313 - file -list_files.txt    moved || from --- /home/req/test/123/ || to--- /home/req/test/
