@@ -13,7 +13,7 @@ from tkinter.filedialog import askopenfilename
 from logging import FileHandler
 
 
-__version = "0.3.1"
+__version = "0.3.2"
 
 
 # Главное окно
@@ -47,16 +47,21 @@ logging.basicConfig(format = FORMAT, level=logging.INFO, filename = 'log.txt' )
 
 
 
-
+#Получаем данные от пользователя 
 def get_addr(ent_adr):
     if len(ent_adr.get()) == 0:
         mb.showerror('warning',
-                     'Поле  не должно быть пустым')
+                     f'Поле {ent_adr} не должно быть пустым')
+        while True:
+            break
+
     else:
         ent_adr = ent_adr.get()
         return ent_adr
 
 
+
+#Декоратор для передачи данных в функцию сортировки 
 def take_data(func):   
     def wrapper():    
         src_adr = get_addr(ent_src)
@@ -97,7 +102,7 @@ def take_data(func):
 #         return expancion_adr
 
 
-# Сортировщик  файлов
+# Функция сортировки  файлов
 @take_data
 def cleaner(src_adr,dst_adr,expancion_adr):
     os.chdir(src_adr)
@@ -125,8 +130,13 @@ def main():
         return 0
     
 
-#############################Дополнительный функционал:
+
+
+
+###########Дополнительный функционал###########:
+
 #Определить расширение файла 
+
 def show_expancion():
     window = tk.Toplevel()
     window.geometry('400x400')
@@ -174,7 +184,7 @@ def winlin():
 mainmenu = tk.Menu(root) 
 root.config(menu=mainmenu) 
 filemenu = tk.Menu(mainmenu, tearoff=0)
-filemenu.add_command(label="Открыть...")
+filemenu.add_command(label="Открыть", command= open)
 filemenu.add_command(label="Узнать расширение", command = show_expancion )
 filemenu.add_command(label="win/lin/mack", command = winlin)
 filemenu.add_command(label="Выход", command = exit_prog)
@@ -182,7 +192,8 @@ helpmenu = tk.Menu(mainmenu, tearoff=0)
 mainmenu.add_cascade(label="Файл", menu=filemenu)
 mainmenu.add_cascade(label="Справка", menu=helpmenu )
 
-
+def open():
+    sys.version
 
 
 
