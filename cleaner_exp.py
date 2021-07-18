@@ -1,5 +1,5 @@
 #!/bin/usr/env python3
-#verion 0.2.9
+#verion 0.3.2
 #Програма для перемещения файлов по расширению из исходной папки(src) в папку назначения(dst) 
 
 import os
@@ -42,8 +42,8 @@ ent_expancion.grid(column=0, row=7, padx=10, sticky=tk.W)
 
 #Логирование
 logger = logging.getLogger(__name__)
-FORMAT = '%(asctime)s - %(message)s'
-logging.basicConfig(format = FORMAT, level=logging.INFO, filename = 'log.txt' ) 
+FORMAT = "%(asctime)s - %(message)s"
+logging.basicConfig(format=FORMAT, level=logging.INFO, filename = 'log.txt' ) 
 
 
 
@@ -52,8 +52,7 @@ def get_addr(ent_adr):
     if len(ent_adr.get()) == 0:
         mb.showerror('warning',
                      f'Поле {ent_adr} не должно быть пустым')
-        while True:
-            break
+        
 
     else:
         ent_adr = ent_adr.get()
@@ -110,11 +109,11 @@ def cleaner(src_adr,dst_adr,expancion_adr):
     for _file in path_file:
         if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
             shutil.move(os.path.abspath(_file), dst_adr)
-            logging.info('file -%s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
+            logging.info('file - %s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
             
         elif expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
             shutil.move(os.path.abspath(_file), dst_adr)
-            logging.info('file -%s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
+            logging.info('file - %s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
                  
 
 # Вызываем функции и передаем  результат
