@@ -1,29 +1,25 @@
 #!/bin/usr/env python3
-#verion 0.2.9
+#verion 0.3.2
 #Програма для перемещения файлов по расширению из исходной папки(src) в папку назначения(dst) 
 
 import os
 import sys
-import glob
 import time
-import re
 import logging
 import shutil
 import tkinter as tk
-from sys import argv
-from sys import platform
 from tkinter import messagebox as mb
 from tkinter.filedialog import askopenfilename
 from logging import FileHandler
 
 
-version = "0.2.9"
+__version = "0.3.2"
 
 
 # Главное окно
 root = tk.Tk()
 root.title('Сортировка файлов по расширению')
-root.geometry('600x500+200+100')
+root.geometry('700x600+200+100')
 
 
 # Поля
@@ -46,61 +42,85 @@ ent_expancion.grid(column=0, row=7, padx=10, sticky=tk.W)
 
 #Логирование
 logger = logging.getLogger(__name__)
-FORMAT = '%(asctime)s - %(message)s'
-logging.basicConfig(format = FORMAT, level=logging.INFO, filename = 'log.txt' ) 
+FORMAT = "%(asctime)s - %(message)s"
+logging.basicConfig(format=FORMAT, level=logging.INFO, filename = 'log.txt' ) 
 
 
 
-
-# получаем адрес исходной папки и сохраняем в !src_adr!
-def my_src():
-    if len(ent_src.get()) == 0:
+#Получаем данные от пользователя 
+def get_addr(ent_adr):
+    if len(ent_adr.get()) == 0:
         mb.showerror('warning',
-                     'Поле 1 не должно быть пустым')
+                     f'Поле {ent_adr} не должно быть пустым')
         
+
     else:
-        src_adr = ent_src.get()
-        return src_adr
+        ent_adr = ent_adr.get()
+        return ent_adr
 
 
-# получаем адрес назначения и сохраняем в !dts_adr!
-def my_dts():
-    if len(ent_dst.get()) == 0:
-        mb.showerror('warning',
-                     'Поле 2 не должно быть пустым')
-    else:
-        dst_adr = ent_dst.get()
-        return dst_adr
+
+#Декоратор для передачи данных в функцию сортировки 
+def take_data(func):   
+    def wrapper():    
+        src_adr = get_addr(ent_src)
+        dts_adr = get_addr(ent_dst)
+        expancion_adr = get_addr(ent_expancion)
+        func(src_adr,dts_adr,expancion_adr)
+        
+    return wrapper
+
+# # получаем адрес исходной папки и сохраняем в !src_adr!
+# def my_src():
+#     if len(ent_src.get()) == 0:
+#         mb.showerror('warning',
+#                      'Поле 1 не должно быть пустым')
+        
+#     else:
+#         src_adr = ent_src.get()
+#         return src_adr
 
 
-# получаем расширение назначения и сохраняем в !expancion_adr!
-def expancion():
-    if len(ent_expancion.get()) == 0:
-        mb.showerror('warning',
-                     'Поле 3 не должно быть пустым') 
-    else:
-        expancion_adr = ent_expancion.get()
-        return expancion_adr
+# # получаем адрес назначения и сохраняем в !dts_adr!
+# def my_dts():
+#     if len(ent_dst.get()) == 0:
+#         mb.showerror('warning',
+#                      'Поле 2 не должно быть пустым')
+#     else:
+#         dst_adr = ent_dst.get()
+#         return dst_adr
 
 
-# Сортировщик  файлов
-def cleaner(src_adr, dst_adr, expancion_adr):
+# # получаем расширение назначения и сохраняем в !expancion_adr!
+# def expancion():
+#     if len(ent_expancion.get()) == 0:
+#         mb.showerror('warning',
+#                      'Поле 3 не должно быть пустым') 
+#     else:
+#         expancion_adr = ent_expancion.get()
+#         return expancion_adr
+
+
+# Функция сортировки  файлов
+@take_data
+def cleaner(src_adr,dst_adr,expancion_adr):
     os.chdir(src_adr)
     path_file = os.listdir(src_adr) #список файлов
     for _file in path_file:
         if _file.endswith(expancion_adr) and os.path.abspath(_file) != dst_adr: # выбираем  фалы по расширению,!=dst
             shutil.move(os.path.abspath(_file), dst_adr)
-            logging.info('file -%s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
+            logging.info('file - %s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
             
         elif expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
             shutil.move(os.path.abspath(_file), dst_adr)
-            logging.info('file -%s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
+            logging.info('file - %s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
                  
- 
+
 # Вызываем функции и передаем  результат
 def main():
     try:
-        cleaner(my_src(), my_dts(), expancion())
+        
+        cleaner()
         mb.showinfo('Perfect', 'All files moved! \n \
                   \n See "log.txt" for details ')
         return 1
@@ -109,8 +129,13 @@ def main():
         return 0
     
 
-#Дополнительный функционал:
+
+
+
+###########Дополнительный функционал###########:
+
 #Определить расширение файла 
+
 def show_expancion():
     window = tk.Toplevel()
     window.geometry('400x400')
@@ -158,7 +183,7 @@ def winlin():
 mainmenu = tk.Menu(root) 
 root.config(menu=mainmenu) 
 filemenu = tk.Menu(mainmenu, tearoff=0)
-filemenu.add_command(label="Открыть...")
+filemenu.add_command(label="Открыть", command= open)
 filemenu.add_command(label="Узнать расширение", command = show_expancion )
 filemenu.add_command(label="win/lin/mack", command = winlin)
 filemenu.add_command(label="Выход", command = exit_prog)
@@ -166,13 +191,14 @@ helpmenu = tk.Menu(mainmenu, tearoff=0)
 mainmenu.add_cascade(label="Файл", menu=filemenu)
 mainmenu.add_cascade(label="Справка", menu=helpmenu )
 
-
+def open():
+    sys.version
 
 
 
 def help_user():
     window = tk.Toplevel()
-    window.geometry('500x400')
+    window.geometry('600x400')
     window.title('Help')
     about = '''Абсолютный путь очень точно показывает где именно находится \n
     файл, а относительный должен иметь обязательную привязку к какой-либо \n
@@ -187,9 +213,9 @@ def help_user():
 
 def about_prog():
     window = tk.Toplevel()
-    window.geometry('500x400')
+    window.geometry('600x400')
     window.title('About')
-    about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(version)
+    about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(__version)
     text_help = tk.Label(window ,text=about)
     text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
     window.mainloop()
@@ -197,8 +223,8 @@ def about_prog():
 helpmenu.add_command(label="О программе", command=about_prog)
 helpmenu.add_command(label="Помощь", command = help_user)
 but = tk.Button(root, text="Старт",bg="lightgreen" , command=main )
-but.config(width=9, height=2)
-but.place(x=480, y=20)
+but.config(width=9, height=2, padx=10, pady=10)
+but.place(x=580, y=20)
 
 
 
