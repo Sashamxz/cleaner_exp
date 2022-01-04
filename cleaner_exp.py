@@ -169,13 +169,15 @@ def open():
 def help_user():
     window = tk.Toplevel()
     window.geometry('600x400')
+    window.columnconfigure(0, minsize=130)
     window.title('Help')
-    about = '''Абсолютный путь очень точно показывает где именно находится \n
+    about = ('''Абсолютный путь очень точно показывает где именно находится \n
     файл, а относительный должен иметь обязательную привязку к какой-либо \n
     отправной точкe, относительно которой и укзывается путь. \n
     Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
     путь к ней будет D:\\picture\\file.png, а относительно корневого \n
-    каталога можно указывать \\picture\\file.png '''
+    каталога можно указывать \\picture\\file.png ''')
+    
     text_help = tk.Label(window ,text=about)
     text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
     window.mainloop()
