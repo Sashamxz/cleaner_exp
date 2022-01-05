@@ -1,10 +1,7 @@
 import os
 import sys
-import time
 import logging
 import shutil
-from cleaner_exp import tk
-from cleaner_exp import ent_dst,ent_expancion,ent_src
 from logging import FileHandler
 from tkinter import messagebox as mb
 from tkinter.filedialog import askopenfilename
@@ -59,6 +56,7 @@ def cleaner(src_adr,dst_adr,expancion_adr):
             logging.info('file - %s    moved || from --- %s || to--- %s' %(_file,src_adr,dst_adr))
                  
 
+
 # Вызываем функции и передаем  результат работы в лог файл
 def main():
     try:
@@ -78,6 +76,7 @@ def main():
 #Определить расширение файла 
 
 def show_expancion():
+    from cleaner_exp import tk
     window = tk.Toplevel()
     window.geometry('400x400')
     window.title('Определить расширение файла')
@@ -126,6 +125,7 @@ def open():
 
 
 def help_user():
+    from cleaner_exp import tk
     window = tk.Toplevel()
     window.geometry('600x400')
     window.columnconfigure(0, minsize=130)
