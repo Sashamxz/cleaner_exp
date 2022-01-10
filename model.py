@@ -3,8 +3,8 @@ import sys
 import logging
 import shutil
 from logging import FileHandler
-from tkinter import messagebox as mb
 from tkinter.filedialog import askopenfilename
+from tkinter import messagebox as mb
 
 
 
@@ -13,6 +13,7 @@ from tkinter.filedialog import askopenfilename
 logger = logging.getLogger(__name__)
 FORMAT = "%(asctime)s - %(message)s"
 logging.basicConfig(format=FORMAT, level=logging.INFO, filename = 'log.txt' ) 
+
 
 
 
@@ -38,7 +39,6 @@ def take_data(func):
         func(src_adr,dts_adr,expancion_adr)
         
     return wrapper
-
 
 
 # Функция сортировки  файлов
@@ -71,33 +71,35 @@ def main():
 
 
 
+
+
+
+
 ###########Дополнительный функционал###########:
 
 #Определить расширение файла 
-
-def show_expancion():
-    from cleaner_exp import tk
-    window = tk.Toplevel()
-    window.geometry('400x400')
-    window.title('Определить расширение файла')
-    var = tk.StringVar
-    window_text=tk.Label(window,text='Выберите файл чтобы узнать его расширение' )
-    
-    def _file_expancion():
-        fiel_exp = askopenfilename()
-        if len(fiel_exp) > 0:
-            _expancion = fiel_exp.rpartition('.')[-1]
-            mb.showinfo(title='Расширение файла', 
-                    message= (' - .%s  ' %(_expancion)))  
-        else:
-            pass
+class InformMenu():
+    def show_expancion(tk):
+        window = tk.Toplevel()
+        window.geometry('400x400')
+        window.title('Определить расширение файла')
+        var = tk.StringVar
+        window_text=tk.Label(window,text='Выберите файл чтобы узнать его расширение' )
         
-    
-    ent = tk.Entry(window, textvariable=var)
-    back = tk.Button(window, text="Browse",command = _file_expancion)
-    window_text.pack(side=tk.TOP, pady=5, padx=5 )
-    ent.pack(side=tk.TOP, pady=5, padx=5 )
-    back.pack(side=tk.TOP, pady=10)
+        def _file_expancion():
+            fiel_exp = askopenfilename()
+            if len(fiel_exp) > 0:
+                _expancion = fiel_exp.rpartition('.')[-1]
+                mb.showinfo(title='Расширение файла', 
+                        message= (' - .%s  ' %(_expancion)))  
+            else:
+                pass
+            
+        ent = tk.Entry(window, textvariable=var)
+        back = tk.Button(window, text="Browse",command = _file_expancion)
+        window_text.pack(side=tk.TOP, pady=5, padx=5 )
+        ent.pack(side=tk.TOP, pady=5, padx=5 )
+        back.pack(side=tk.TOP, pady=10)
 
 
 #Меню/выход
@@ -122,31 +124,29 @@ def winlin():
 def open():
     sys.version
 
+class HelpMenu(InformMenu):
+    def help_user(tk):
+        window = tk.Toplevel()
+        window.geometry('600x400')
+        window.columnconfigure(0, minsize=130)
+        window.title('Help')
+        about = ('''Абсолютный путь очень точно показывает где именно находится \n
+        файл, а относительный должен иметь обязательную привязку к какой-либо \n
+        отправной точкe, относительно которой и укзывается путь. \n
+        Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
+        путь к ней будет D:\\picture\\file.png, а относительно корневого \n
+        каталога можно указывать \\picture\\file.png ''')
+        
+        text_help = tk.Label(window ,text=about)
+        text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
+        window.mainloop()
 
 
-def help_user():
-    from cleaner_exp import tk
-    window = tk.Toplevel()
-    window.geometry('600x400')
-    window.columnconfigure(0, minsize=130)
-    window.title('Help')
-    about = ('''Абсолютный путь очень точно показывает где именно находится \n
-    файл, а относительный должен иметь обязательную привязку к какой-либо \n
-    отправной точкe, относительно которой и укзывается путь. \n
-    Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
-    путь к ней будет D:\\picture\\file.png, а относительно корневого \n
-    каталога можно указывать \\picture\\file.png ''')
-    
-    text_help = tk.Label(window ,text=about)
-    text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
-    window.mainloop()
-
-
-def about_prog(__version):
-    window = tk.Toplevel()
-    window.geometry('600x400')
-    window.title('About')
-    about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(__version)
-    text_help = tk.Label(window ,text=about)
-    text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
-    window.mainloop()
+    def about_prog(__version, tk):
+        window = tk.Toplevel()
+        window.geometry('600x400')
+        window.title('About')
+        about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(__version)
+        text_help = tk.Label(window ,text=about)
+        text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
+        window.mainloop()
