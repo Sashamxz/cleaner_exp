@@ -80,28 +80,28 @@ def main():
 #Определить расширение файла 
 class InformMenu():
     def show_expancion(tk):
-        window = tk.Toplevel()
-        window.geometry('400x400')
-        window.title('Определить расширение файла')
-        var = tk.StringVar
-        window_text=tk.Label(window,text='Выберите файл чтобы узнать его расширение' )
-        
-        def _file_expancion():
-            fiel_exp = askopenfilename()
-            if len(fiel_exp) > 0:
-                _expancion = fiel_exp.rpartition('.')[-1]
-                mb.showinfo(title='Расширение файла', 
-                        message= (' - .%s  ' %(_expancion)))  
-            else:
-                pass
+        if __name__ == "__main__":
+            window = tk.Toplevel()
+            window.geometry('400x400')
+            window.title('Определить расширение файла')
+            var = tk.StringVar
+            window_text=tk.Label(window,text='Выберите файл чтобы узнать его расширение' )
             
-        ent = tk.Entry(window, textvariable=var)
-        back = tk.Button(window, text="Browse",command = _file_expancion)
-        window_text.pack(side=tk.TOP, pady=5, padx=5 )
-        ent.pack(side=tk.TOP, pady=5, padx=5 )
-        back.pack(side=tk.TOP, pady=10)
-
-
+            def _file_expancion():
+                fiel_exp = askopenfilename()
+                if len(fiel_exp) > 0:
+                    _expancion = fiel_exp.rpartition('.')[-1]
+                    mb.showinfo(title='Расширение файла', 
+                            message= (' - .%s  ' %(_expancion)))  
+                else:
+                    pass
+                
+            ent = tk.Entry(window, textvariable=var)
+            back = tk.Button(window, text="Browse",command = _file_expancion)
+            window_text.pack(side=tk.TOP, pady=5, padx=5 )
+            ent.pack(side=tk.TOP, pady=5, padx=5 )
+            back.pack(side=tk.TOP, pady=10)
+    
 #Меню/выход
 def exit_prog():
     sys.exit()         
