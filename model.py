@@ -136,10 +136,11 @@ class HelpMenu(InformMenu):
         Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
         путь к ней будет D:\\picture\\file.png, а относительно корневого \n
         каталога можно указывать \\picture\\file.png ''')
-        
+    
         text_help = tk.Label(window ,text=about)
         text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
-        window.mainloop()
+        if __name__ == "__main__":  
+            window.mainloop()
 
 
     def about_prog(__version, tk):
@@ -149,4 +150,5 @@ class HelpMenu(InformMenu):
         about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(__version)
         text_help = tk.Label(window ,text=about)
         text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
-        window.mainloop()
+        if __name__ == "__main__":
+            window.mainloop()
