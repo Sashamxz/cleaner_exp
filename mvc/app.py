@@ -13,7 +13,7 @@ class App(tk.Tk):
         self.root.geometry('700x600+200+100')
 
         # create a model
-        model = Model()
+        model = Model('ent_src', 'ent_dst', 'ent_expancion')
 
         # create a view and place it on the root window
         view = View(self.root)

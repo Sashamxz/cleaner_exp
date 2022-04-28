@@ -2,21 +2,21 @@ import tkinter as tk
 from tkinter import ttk
 
 
-class View(ttk.Frame):
+class View(tk.Frame):
     def __init__(self, parent,):
         super().__init__(parent)
         self.parent = parent
         
         # create widgets
         # label
-        self.ent_dst_title = ttk.Label(self, text='Введите абсолютный путь к каталогу назначения:')
-        self.ent_src_title = ttk.Label(self, text='Введите абсолютный путь к исходному каталогу:')
-        self.ent_expansion_title = ttk.Label(self, text='Введите расширения файла, например - (.txt) или " * " что бы выбрать все файлы: ')
+        self.ent_dst_title = tk.Label(self, text='Введите абсолютный путь к каталогу назначения:')
+        self.ent_src_title = tk.Label(self, text='Введите абсолютный путь к исходному каталогу:')
+        self.ent_expansion_title = tk.Label(self, text='Введите расширения файла, например - (.txt) или " * " что бы выбрать все файлы: ')
         
         # data entry
-        self.ent_src = ttk.Entry(self, width=70 ) #Поле ввода исходного каталога
-        self.ent_dst = ttk.Entry(self, width=70 ) #Поле ввода  каталога назначения
-        self.ent_expancion = ttk.Entry(self, width=70) #Поле ввода расширения
+        self.ent_src = tk.Entry(self, width=70 ) #Поле ввода исходного каталога
+        self.ent_dst = tk.Entry(self, width=70 ) #Поле ввода  каталога назначения
+        self.ent_expancion = tk.Entry(self, width=70) #Поле ввода расширения
         
         #grid
         self.ent_src_title.grid(column=0, row=2, padx=10, sticky=tk.W)
@@ -29,7 +29,7 @@ class View(ttk.Frame):
 
         
         # start button
-        self.but = tk.Button(self, text="Старт",bg="lightgreen" )
+        self.but = tk.Button(self, text="Старт", bg="lightgreen" )
         self.but.config(width=9, height=2, padx=10, pady=10)
         self.but.place(x=580, y=20)
         
