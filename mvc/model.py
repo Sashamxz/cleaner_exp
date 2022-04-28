@@ -14,10 +14,8 @@ __version = "0.3.2"
 
 
 class Model:
-    def __init__(self, ent_src, ent_dst, ent_expancion):
-        self.ent_src = ent_src
-        self.ent_dst = ent_dst
-        self.ent_expancion = ent_expancion
+    def __init__(self):
+        pass
 
    
 

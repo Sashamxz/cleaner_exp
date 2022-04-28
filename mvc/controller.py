@@ -5,15 +5,8 @@ class Controller:
     def __init__(self, model, view):
         self.model = model
         self.view = view
-
+        self.view.but.config(command=self.model.main )
     
 
-    def main(self):
-        try:
-            self.cleaner()
-            mb.showinfo('Perfect', 'All files moved! \n \
-                    \n See "log.txt" for details ')
-            return 1
-        except Exception as ex:
-            mb.showerror('error', ex)
-            return 0    
+    def cleans(self, ent_dst, ent_src, ent_expancion):
+        self.model.main()

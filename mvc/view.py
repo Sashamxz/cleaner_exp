@@ -3,9 +3,10 @@ from tkinter import ttk
 
 
 class View(ttk.Frame):
-    def __init__(self, parent):
+    def __init__(self, parent,):
         super().__init__(parent)
-
+        self.parent = parent
+        
         # create widgets
         # label
         self.ent_dst_title = ttk.Label(self, text='Введите абсолютный путь к каталогу назначения:')
@@ -18,17 +19,17 @@ class View(ttk.Frame):
         self.ent_expancion = ttk.Entry(self, width=70) #Поле ввода расширения
         
         #grid
-        self.ent_src_title.grid(column=0, row=2, padx=10, sticky=ttk.W)
-        self.ent_src.grid(column=0, row=3, padx=10, sticky=ttk.W)
-        self.ent_dst_title.grid(column=0, row=4, padx=10, sticky=ttk.W)
-        self.ent_dst.grid(column=0, row=5, padx=10, sticky=ttk.W)
-        self.ent_expansion_title.grid(column=0, row=6, padx=10, sticky=ttk.W)
-        self.ent_expancion.grid(column=0, row=7, padx=10, sticky=ttk.W)
+        self.ent_src_title.grid(column=0, row=2, padx=10, sticky=tk.W)
+        self.ent_src.grid(column=0, row=3, padx=10, sticky=tk.W)
+        self.ent_dst_title.grid(column=0, row=4, padx=10, sticky=tk.W)
+        self.ent_dst.grid(column=0, row=5, padx=10, sticky=tk.W)
+        self.ent_expansion_title.grid(column=0, row=6, padx=10, sticky=tk.W)
+        self.ent_expancion.grid(column=0, row=7, padx=10, sticky=tk.W)
 
 
         
         # start button
-        self.but = ttk.Button(self, text="Старт",bg="lightgreen" , command=self.main )
+        self.but = tk.Button(self, text="Старт",bg="lightgreen" )
         self.but.config(width=9, height=2, padx=10, pady=10)
         self.but.place(x=580, y=20)
         

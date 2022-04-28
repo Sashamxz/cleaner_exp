@@ -8,15 +8,15 @@ from controller import Controller
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-
-        self.title('Сортировка файлов по расширению')
-        self.geometry('700x600+200+100')
+        self.root = tk.Tk()
+        self.root.title('Сортировка файлов по расширению')
+        self.root.geometry('700x600+200+100')
 
         # create a model
-        model = Model(self,ent_dst, ent_src, ent_expancion)
+        model = Model()
 
         # create a view and place it on the root window
-        view = View(self)
+        view = View(self.root)
         view.grid(row=0, column=0, padx=10, pady=10)
 
         # create a controller
