@@ -1,3 +1,4 @@
+import numbers
 import tkinter as tk
 
 
@@ -5,7 +6,7 @@ import tkinter as tk
 class View(tk.Frame):
     def __init__(self, parent,):
         super().__init__(parent)
-        self.parent = parent
+        # self.parent = parent
         
         # create widgets
         # label
@@ -40,6 +41,13 @@ class View(tk.Frame):
         # set the controller
         self.controller = None
 
+    def field_num(self):
+        numb = { self.ent_src : 1,
+                self.ent_dst  : 2,
+                self.ent_expancion : 3
+                }
+        return numb
+
     def set_controller(self, controller):
         """
         Set the controller
@@ -47,13 +55,13 @@ class View(tk.Frame):
         """
         self.controller = controller
 
-    # def start_button_clicked(self):
-    #     """
-    #     Handle button click event
-    #     :return:
-    #     """
-    #     if self.controller:
-    #         self.controller.main()
+    def start_button_clicked(self):
+        """
+        Handle button click event
+        :return:
+        """
+        if self.controller:
+            self.controller.main()
 
     # window = tk.Toplevel()
     # window.geometry('400x400')

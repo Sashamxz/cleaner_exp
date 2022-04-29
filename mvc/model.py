@@ -14,20 +14,23 @@ __version = "0.3.2"
 
 
 class Model:
-    def __init__(self, ent_src, ent_dst, ent_expancion):
+    def __init__(self, ent_src, ent_dst, ent_expancion, field_num):
         self.ent_src = ent_src
         self.ent_dst = ent_dst
         self.ent_expancion = ent_expancion
-
+        self.field_num = field_num
    
 
 
 
     def get_addr(self,ent_adr):
+        field = self.field_num()
+        num = field[ent_adr]
+
         self.ent_adr = ent_adr
         if len(self.ent_adr.get()) == 0:
             mb.showerror('warning',
-                        f'Поле {ent_adr} не должно быть пустым')
+                        f'Поле {num} не должно быть пустым')
             raise Exception(' Confirm your entries ')
 
         else:
@@ -78,32 +81,32 @@ class Model:
 
     #Определить расширение файла 
 
-    def show_expancion(self):
-        def _file_expancion():
-            fiel_exp = askopenfilename()
-            if len(fiel_exp) > 0:
-                _expancion = fiel_exp.rpartition('.')[-1]
-                mb.showinfo(title='Расширение файла', 
-                        message= (' - .%s  ' %(_expancion)))  
-            else:
-                pass
+    # def show_expancion(self):
+    #     def _file_expancion():
+    #         fiel_exp = askopenfilename()
+    #         if len(fiel_exp) > 0:
+    #             _expancion = fiel_exp.rpartition('.')[-1]
+    #             mb.showinfo(title='Расширение файла', 
+    #                     message= (' - .%s  ' %(_expancion)))  
+    #         else:
+    #             pass
         
 
 
 
-    #Меню/выход
-    def exit_prog(self):
-        sys.exit()         
+    # #Меню/выход
+    # def exit_prog(self):
+    #     sys.exit()         
 
 
-    #Определеяем ОС
-    def winlin(self):
-        platformf = sys.platform
-        if platformf == "linux" or platformf == "linux2" :
-            mb.showinfo("OS", "Linux :)")   # linux
+    # #Определеяем ОС
+    # def winlin(self):
+    #     platformf = sys.platform
+    #     if platformf == "linux" or platformf == "linux2" :
+    #         mb.showinfo("OS", "Linux :)")   # linux
         
-        elif platformf == "darwin":
-            mb.showinfo("OS", "macOS")    # OS X
+    #     elif platformf == "darwin":
+    #         mb.showinfo("OS", "macOS")    # OS X
         
-        elif platformf == "win32":
-            mb.showinfo("OS", "Windows...") # Windows...        
+    #     elif platformf == "win32":
+    #         mb.showinfo("OS", "Windows...") # Windows...        
