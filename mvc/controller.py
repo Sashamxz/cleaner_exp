@@ -8,5 +8,5 @@ class Controller:
         self.view.but.config(command=self.model.main )
     
 
-    def cleans(self, ent_dst, ent_src, ent_expancion):
-        self.model.main()
+    # def cleans(self, ent_dst, ent_src, ent_expancion):
+    #     self.model.main()

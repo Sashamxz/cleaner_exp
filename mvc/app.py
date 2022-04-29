@@ -12,12 +12,13 @@ class App(tk.Tk):
         self.root.title('Сортировка файлов по расширению')
         self.root.geometry('700x600+200+100')
 
-        # create a model
-        model = Model('ent_src', 'ent_dst', 'ent_expancion')
-
+       
         # create a view and place it on the root window
         view = View(self.root)
-        view.grid(row=0, column=0, padx=10, pady=10)
+        view.grid(row=0, column=0, padx=10, pady=10)     
+        
+        # create a model
+        model = Model(view.ent_src, view.ent_dst, view.ent_expancion)
 
         # create a controller
         controller = Controller(model, view)
