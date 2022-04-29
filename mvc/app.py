@@ -15,7 +15,7 @@ class App(tk.Tk):
        
         # create a view and place it on the root window
         view = View(self.root)
-        view.grid(row=0, column=0, padx=10, pady=10)     
+        view.grid(row=0, column=0, padx=0, pady=0)     
         
         # create a model
         model = Model(view.ent_src, view.ent_dst, view.ent_expancion)

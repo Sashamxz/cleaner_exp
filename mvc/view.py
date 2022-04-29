@@ -18,6 +18,9 @@ class View(tk.Frame):
         self.ent_dst = tk.Entry(self, width=70 ) #Поле ввода  каталога назначения
         self.ent_expancion = tk.Entry(self, width=70) #Поле ввода расширения
         
+
+
+        
         #grid
         self.ent_src_title.grid(column=0, row=2, padx=10, sticky=tk.W)
         self.ent_src.grid(column=0, row=3, padx=10, sticky=tk.W)
@@ -29,8 +32,7 @@ class View(tk.Frame):
 
         
         # start button
-        self.but = tk.Button(self, text="Старт", bg="lightgreen" )
-        self.but.config(width=9, height=2, padx=10, pady=10)
+        self.but = tk.Button(self, width=2, height=2, text="Старт", bg="lightgreen" )
         self.but.place(x=580, y=20)
         
         
@@ -41,18 +43,17 @@ class View(tk.Frame):
     def set_controller(self, controller):
         """
         Set the controller
-        :param controller:
-        :return:
+       
         """
         self.controller = controller
 
-    def start_button_clicked(self):
-        """
-        Handle button click event
-        :return:
-        """
-        if self.controller:
-            self.controller.main()
+    # def start_button_clicked(self):
+    #     """
+    #     Handle button click event
+    #     :return:
+    #     """
+    #     if self.controller:
+    #         self.controller.main()
 
     # window = tk.Toplevel()
     # window.geometry('400x400')

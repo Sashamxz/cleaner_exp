@@ -27,12 +27,12 @@ class Model:
         self.ent_adr = ent_adr
         if len(self.ent_adr.get()) == 0:
             mb.showerror('warning',
-                        f'Поле {self.ent_adr} не должно быть пустым')
-            raise Exception("  ")
+                        f'Поле {ent_adr} не должно быть пустым')
+            raise Exception(' Confirm your entries ')
 
         else:
-            ent_adr = self.ent_adr.get()
-            return ent_adr
+            self.ent_adr = ent_adr.get()
+            return self.ent_adr
 
 
             
