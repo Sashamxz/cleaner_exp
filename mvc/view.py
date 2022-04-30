@@ -69,6 +69,11 @@ class View(tk.Frame):
 
         # set the controller
         self.controller = None
+        
+       
+
+
+
 
     def initUI(self):
 
@@ -109,20 +114,21 @@ class View(tk.Frame):
         """
         if self.controller:
             self.controller.main()
-
-    def show_expanc(self):   
-        window = tk.Toplevel()
+    
+    @classmethod
+    def show_expanc(cls):
+        window = tk.Toplevel(cls)
         window.geometry('400x400')
         window.title('Определить расширение файла')
         var = tk.StringVar
         window_text=tk.Label(window,text='Выберите файл чтобы узнать его расширение' )
             
         ent = tk.Entry(window, textvariable=var)
-        self.back = tk.Button(window, text="Browse")
+        back = tk.Button(window, text="Browse")
         window_text.pack(side=tk.TOP, pady=5, padx=5 )
         ent.pack(side=tk.TOP, pady=5, padx=5 )
-        self.back.pack(side=tk.TOP, pady=10)    
-        
+        back.pack(side=tk.TOP, pady=10)    
+            
 
 
  

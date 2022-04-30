@@ -9,7 +9,7 @@ class Controller:
         self.view.but.config(command=self.model.exit_prog)
         self.view.show_expanc.back.config(command = self.model.file_expancion)
         self.view.filemenu.add_command(label="Открыть", command= self.model.open_file)
-        self.view.filemenu.add_command(label="Узнать расширение", command = self.view.showe_expancion)
+        self.view.filemenu.add_command(label="Узнать расширение", command = self.view.show_expanc)
         self.view.filemenu.add_command(label="win/lin/mack", command = self.model.winlin)
         self.view.filemenu.add_command(label="Выход", command = self.model.exit_prog)
         self.view.helpmenu.add_command(label="Помощь", command = self.model.help_user)
