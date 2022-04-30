@@ -1,4 +1,4 @@
-import numbers
+
 import tkinter as tk
 
 
@@ -6,8 +6,12 @@ import tkinter as tk
 class View(tk.Frame):
     def __init__(self, parent,):
         super().__init__(parent)
-        # self.parent = parent
-        
+        self.parent = parent
+        self.initUI()
+        self.show_expanc
+        # menu = tk.Menu(self)
+        # self.config(menu=menu)
+        # self.menu.add_command(label='Файл')
         # create widgets
         # label
         self.ent_dst_title = tk.Label(self, text='Введите абсолютный путь к каталогу назначения:')
@@ -19,7 +23,7 @@ class View(tk.Frame):
         self.ent_dst = tk.Entry(self, width=70 ) #Поле ввода  каталога назначения
         self.ent_expancion = tk.Entry(self, width=70) #Поле ввода расширения
         
-
+        
 
         
         #grid
@@ -36,10 +40,51 @@ class View(tk.Frame):
         self.but = tk.Button(self, width=2, height=2, text="Старт", bg="lightgreen" )
         self.but.place(x=580, y=20)
         
+
+     
         
+        # self.window = tk.Toplevel()
+        # self.window.geometry('400x400')
+        # self.window.title('Определить расширение файла')
+        # var = tk.StringVar
+        # self.window_text=tk.Label(self.window,text='Выберите файл чтобы узнать его расширение' )
+
+        # self.window2 = tk.Toplevel()
+        # self.window.geometry('600x400')
+        # self.window.title('Help')
+        # self.about = '''Абсолютный путь очень точно показывает где именно находится \n
+        # файл, а относительный должен иметь обязательную привязку к какой-либо \n
+        # отправной точкe, относительно которой и укзывается путь. \n
+        # Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
+        # путь к ней будет D:\\picture\\file.png, а относительно корневого \n
+        # каталога можно указывать \\picture\\file.png '''
+        
+        # self.ent = tk.Entry(self, textvariable=var)
+        # self.back = tk.Button(self, text="Browse",) #command = self._file_expancion
+        # self.window_text.pack(side=tk.TOP, pady=5, padx=5 )
+        # self.ent.pack(side=tk.TOP, pady=5, padx=5 )
+        # self.back.pack(side=tk.TOP, pady=10)
+        # self.text_help = tk.Label(self.window2 ,text=self.about)
+        # self.text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
 
         # set the controller
         self.controller = None
+
+    def initUI(self):
+
+        mainmenu = tk.Menu(self.parent) 
+        self.parent.config(menu=mainmenu) 
+        self.filemenu = tk.Menu(mainmenu, tearoff=0)
+        self.helpmenu = tk.Menu(mainmenu, tearoff=0)
+        mainmenu.add_cascade(label="Файл", menu=self.filemenu)
+        mainmenu.add_cascade(label="Справка", menu=self.helpmenu )
+
+      
+
+  
+
+    
+       
 
     def field_num(self):
         numb = { self.ent_src : 1,
@@ -48,12 +93,14 @@ class View(tk.Frame):
                 }
         return numb
 
+
     def set_controller(self, controller):
         """
         Set the controller
        
         """
         self.controller = controller
+
 
     def start_button_clicked(self):
         """
@@ -63,29 +110,20 @@ class View(tk.Frame):
         if self.controller:
             self.controller.main()
 
-    # window = tk.Toplevel()
-    # window.geometry('400x400')
-    # window.title('Определить расширение файла')
-    # var = tk.StringVar
-    # window_text=tk.Label(window,text='Выберите файл чтобы узнать его расширение' )
-
-    # window2 = tk.Toplevel()
-    # window.geometry('600x400')
-    # window.title('Help')
-    # about = '''Абсолютный путь очень точно показывает где именно находится \n
-    # файл, а относительный должен иметь обязательную привязку к какой-либо \n
-    # отправной точкe, относительно которой и укзывается путь. \n
-    # Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
-    # путь к ней будет D:\\picture\\file.png, а относительно корневого \n
-    # каталога можно указывать \\picture\\file.png '''
-    # text_help = tk.Label(window2 ,text=about)
-    # text_help.pack(side=ttk.LEFT, expand=True,padx=10, pady=10)
+    def show_expanc(self):   
+        window = tk.Toplevel()
+        window.geometry('400x400')
+        window.title('Определить расширение файла')
+        var = tk.StringVar
+        window_text=tk.Label(window,text='Выберите файл чтобы узнать его расширение' )
+            
+        ent = tk.Entry(window, textvariable=var)
+        self.back = tk.Button(window, text="Browse")
+        window_text.pack(side=tk.TOP, pady=5, padx=5 )
+        ent.pack(side=tk.TOP, pady=5, padx=5 )
+        self.back.pack(side=tk.TOP, pady=10)    
+        
 
 
-
-    # ent = ttk.Entry(window, textvariable=var)
-    # # back = ttk.Button(window, text="Browse",command = self._file_expancion)
-    # window_text.pack(side=ttk.TOP, pady=5, padx=5 )
-    # ent.pack(side=ttk.TOP, pady=5, padx=5 )
-    # # back.pack(side=ttk.TOP, pady=10)
+ 
        

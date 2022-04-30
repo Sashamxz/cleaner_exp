@@ -11,8 +11,7 @@ class App(tk.Tk):
         
         self.title('Сортировка файлов по расширению')
         self.geometry('700x600+200+100')
-
-       
+        
         # create a view and place it on the root window
         view = View(self)
         view.grid(row=0, column=0, padx=0, pady=0)     

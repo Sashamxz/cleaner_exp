@@ -24,13 +24,13 @@ class Model:
 
 
     def get_addr(self,ent_adr):
-        field = self.field_num()
-        num = field[ent_adr]
+        field_num = self.field_num()[ent_adr]
+        
 
         self.ent_adr = ent_adr
         if len(self.ent_adr.get()) == 0:
             mb.showerror('warning',
-                        f'Поле {num} не должно быть пустым')
+                        f'Поле {field_num} не должно быть пустым')
             raise Exception(' Confirm your entries ')
 
         else:
@@ -81,32 +81,73 @@ class Model:
 
     #Определить расширение файла 
 
-    # def show_expancion(self):
-    #     def _file_expancion():
-    #         fiel_exp = askopenfilename()
-    #         if len(fiel_exp) > 0:
-    #             _expancion = fiel_exp.rpartition('.')[-1]
-    #             mb.showinfo(title='Расширение файла', 
-    #                     message= (' - .%s  ' %(_expancion)))  
-    #         else:
-    #             pass
+    def file_expancion(self):
         
+        fiel_exp = askopenfilename()
+        if len(fiel_exp) > 0:
+            _expancion = fiel_exp.rpartition('.')[-1]
+            mb.showinfo(title='Расширение файла', 
+                    message = (' - .%s  ' %(_expancion)))  
+        else:
+            pass
+    
 
 
 
-    # #Меню/выход
-    # def exit_prog(self):
-    #     sys.exit()         
+    #Меню/выход
+    def exit_prog(self):
+        sys.exit()         
 
 
     # #Определеяем ОС
-    # def winlin(self):
-    #     platformf = sys.platform
-    #     if platformf == "linux" or platformf == "linux2" :
-    #         mb.showinfo("OS", "Linux :)")   # linux
+    def winlin(self):
+        platformf = sys.platform
+        if platformf == "linux" or platformf == "linux2" :
+            mb.showinfo("OS", "Linux :)")   # linux
         
-    #     elif platformf == "darwin":
-    #         mb.showinfo("OS", "macOS")    # OS X
+        elif platformf == "darwin":
+            mb.showinfo("OS", "macOS")    # OS X
         
-    #     elif platformf == "win32":
-    #         mb.showinfo("OS", "Windows...") # Windows...        
+        elif platformf == "win32":
+            mb.showinfo("OS", "Windows...") # Windows...        
+
+
+
+
+    def open_file(self):
+        sys.version        
+
+
+
+
+    def help_user(self):
+        pass
+        # window = tk.Toplevel()
+        # window.geometry('600x400')
+        # window.title('Help')
+        # about = '''Абсолютный путь очень точно показывает где именно находится \n
+        # файл, а относительный должен иметь обязательную привязку к какой-либо \n
+        # отправной точкe, относительно которой и укзывается путь. \n
+        # Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
+        # путь к ней будет D:\\picture\\file.png, а относительно корневого \n
+        # каталога можно указывать \\picture\\file.png '''
+        # text_help = tk.Label(window ,text=about)
+        # text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
+        # window.mainloop()
+
+
+
+
+
+     
+    def about_prog(self):
+        pass
+        # window = tk.Toplevel()
+        # window.geometry('600x400')
+        # window.title('About')
+        # about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(__version)
+        # text_help = tk.Label(window ,text=about)
+        # text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
+        # window.mainloop()   
+
+    
