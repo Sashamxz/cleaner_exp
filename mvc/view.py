@@ -8,7 +8,7 @@ class View(tk.Frame):
         super().__init__(parent)
         self.parent = parent
         self.initUI()
-        self.show_expanc
+        self.show_expanc()
         # menu = tk.Menu(self)
         # self.config(menu=menu)
         # self.menu.add_command(label='Файл')
@@ -115,9 +115,18 @@ class View(tk.Frame):
         if self.controller:
             self.controller.main()
     
-    @classmethod
-    def show_expanc(cls):
-        window = tk.Toplevel(cls)
+    
+    def show_expanc(self):
+        Top(self)
+        self.back = Top.back
+       
+
+
+ 
+class Top(tk.Toplevel):
+    def __init__(self, top_main, **kwargs):
+        super().__init__(**kwargs)
+        window = top_main
         window.geometry('400x400')
         window.title('Определить расширение файла')
         var = tk.StringVar
@@ -129,7 +138,3 @@ class View(tk.Frame):
         ent.pack(side=tk.TOP, pady=5, padx=5 )
         back.pack(side=tk.TOP, pady=10)    
             
-
-
- 
-       
