@@ -4,11 +4,12 @@ import tkinter as tk
 
 
 class View(tk.Frame):
-    def __init__(self, parent,):
+    def __init__(self, parent):
         super().__init__(parent)
-        self.parent = parent
+        self.parent =parent
         self.initUI()
-        self.show_expanc()
+        
+        # self.show_expanc
         # menu = tk.Menu(self)
         # self.config(menu=menu)
         # self.menu.add_command(label='Файл')
@@ -117,24 +118,25 @@ class View(tk.Frame):
     
     
     def show_expanc(self):
-        Top(self)
-        self.back = Top.back
-       
-
-
- 
-class Top(tk.Toplevel):
-    def __init__(self, top_main, **kwargs):
-        super().__init__(**kwargs)
-        window = top_main
-        window.geometry('400x400')
-        window.title('Определить расширение файла')
+        about = About(self)
+        
+        self.buttn_sell = about.button_sel    
+        self.about.grab_set()
+        
+class About(tk.Toplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.label = tk.Label(self, text='Определить расширение файла')
+        self.button_sel = tk.Button(self, text='Browse')
+        self.geometry('400x400')
+        self.label.pack(padx=20, pady=20)
+        self.button_sel.pack(pady=5, ipadx=2, ipady=2)
         var = tk.StringVar
-        window_text=tk.Label(window,text='Выберите файл чтобы узнать его расширение' )
-            
-        ent = tk.Entry(window, textvariable=var)
-        back = tk.Button(window, text="Browse")
+        self.ent = tk.Entry(self, textvariable=var)
+        window_text=tk.Label(self,text='Выберите файл чтобы узнать его расширение' )
         window_text.pack(side=tk.TOP, pady=5, padx=5 )
-        ent.pack(side=tk.TOP, pady=5, padx=5 )
-        back.pack(side=tk.TOP, pady=10)    
+        
+     
             
+       
+      
