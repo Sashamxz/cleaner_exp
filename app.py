@@ -1,6 +1,6 @@
 import tkinter as tk
 from model import Model
-from view import About, View
+from view import ExpancionFile, View
 from controller import Controller
 
 
@@ -15,7 +15,7 @@ class App(tk.Tk):
         # create a view and place it on the root window
         view = View(self)
         view.grid(row=0, column=0, padx=0, pady=0)     
-        about = About
+        about = ExpancionFile
         # create a model
         model = Model(view.ent_src, view.ent_dst, view.ent_expancion, view.field_num)
         
