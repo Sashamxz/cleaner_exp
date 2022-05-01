@@ -9,14 +9,7 @@ class View(tk.Frame):
         super().__init__(parent)
         self.parent = parent
         self.initUI()
-        self.show_expanc
-
-        # menu = tk.Menu(self)
-        # self.config(menu=menu)
-        # self.menu.add_command(label='Файл')
-        # create widgets
-        # label
-
+        
         self.ent_dst_title = tk.Label(self, text='Введите абсолютный путь к каталогу назначения:')
         self.ent_src_title = tk.Label(self, text='Введите абсолютный путь к исходному каталогу:')
         self.ent_expansion_title = tk.Label(self, text='Введите расширения файла, например - (.txt) или " * " что бы выбрать все файлы: ')
@@ -43,11 +36,7 @@ class View(tk.Frame):
 
      
         
-        # self.window = tk.Toplevel()
-        # self.window.geometry('400x400')
-        # self.window.title('Определить расширение файла')
-        # var = tk.StringVar
-        # self.window_text=tk.Label(self.window,text='Выберите файл чтобы узнать его расширение' )
+  
 
         # self.window2 = tk.Toplevel()
         # self.window.geometry('600x400')
@@ -71,9 +60,7 @@ class View(tk.Frame):
         self.controller = None
         
         
-       
-
-
+    
 
 
     def initUI(self):
@@ -117,27 +104,22 @@ class View(tk.Frame):
             self.controller.main()
     
 
-    def show_expanc(self):
-        pass
-        # about = About(self)
-        
-        # self.buttn_sell = about.button_sel  
+   
           
-     
-
 class About(tk.Toplevel):
-    def __init__(self, parent):
+    
+    def __init__(self,parent):
         super().__init__(parent)
-        self.label = tk.Label(self, text='Определить расширение файла')
-        self.button_sel = tk.Button(self, text='Browse')
-        self.geometry('400x400')
-        self.label.pack(padx=20, pady=20)
-        self.button_sel.pack(pady=5, ipadx=2, ipady=2)
-        var = tk.StringVar
-        self.ent = tk.Entry(self, textvariable=var)
+        
+        self.title('Определить расширение файла')
         window_text=tk.Label(self,text='Выберите файл чтобы узнать его расширение' )
         window_text.pack(side=tk.TOP, pady=5, padx=5 )
+        self.button_sel = tk.Button(self, text='Browse')
+        self.geometry('400x400')
+        # self.label.pack(padx=20, pady=20)
+        var = tk.StringVar()
+        self.ent = tk.Entry(self, textvariable=var)
+        self.ent.pack(side=tk.LEFT, pady=5, padx=5 )
+        self.button_sel.pack(side=tk.LEFT, pady=5, ipadx=2, ipady=2)
         
-     
-            
-    
+        

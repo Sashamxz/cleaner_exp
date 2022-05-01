@@ -87,7 +87,7 @@ class Model:
         if len(fiel_exp) > 0:
             _expancion = fiel_exp.rpartition('.')[-1]
             mb.showinfo(title='Расширение файла', 
-                    message = (' - .%s  ' %(_expancion)))  
+                    message = ('расширение - .%s  ' %(_expancion)))  
         else:
             pass
     
