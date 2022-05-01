@@ -1,20 +1,22 @@
-
 import tkinter as tk
+
+
 
 
 
 class View(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
-        self.parent =parent
+        self.parent = parent
         self.initUI()
-        
-        # self.show_expanc
+        self.show_expanc
+
         # menu = tk.Menu(self)
         # self.config(menu=menu)
         # self.menu.add_command(label='Файл')
         # create widgets
         # label
+
         self.ent_dst_title = tk.Label(self, text='Введите абсолютный путь к каталогу назначения:')
         self.ent_src_title = tk.Label(self, text='Введите абсолютный путь к исходному каталогу:')
         self.ent_expansion_title = tk.Label(self, text='Введите расширения файла, например - (.txt) или " * " что бы выбрать все файлы: ')
@@ -25,8 +27,6 @@ class View(tk.Frame):
         self.ent_expancion = tk.Entry(self, width=70) #Поле ввода расширения
         
         
-
-        
         #grid
         self.ent_src_title.grid(column=0, row=2, padx=10, sticky=tk.W)
         self.ent_src.grid(column=0, row=3, padx=10, sticky=tk.W)
@@ -35,11 +35,10 @@ class View(tk.Frame):
         self.ent_expansion_title.grid(column=0, row=6, padx=10, sticky=tk.W)
         self.ent_expancion.grid(column=0, row=7, padx=10, sticky=tk.W)
 
-
-        
+  
         # start button
-        self.but = tk.Button(self, width=2, height=2, text="Старт", bg="lightgreen" )
-        self.but.place(x=580, y=20)
+        self.butt_start = tk.Button(self, width=2, height=2, text="Старт", bg="lightgreen" )
+        self.butt_start.place(x=580, y=20)
         
 
      
@@ -70,6 +69,7 @@ class View(tk.Frame):
 
         # set the controller
         self.controller = None
+        
         
        
 
@@ -116,13 +116,15 @@ class View(tk.Frame):
         if self.controller:
             self.controller.main()
     
-    
+
     def show_expanc(self):
-        about = About(self)
+        pass
+        # about = About(self)
         
-        self.buttn_sell = about.button_sel    
-        self.about.grab_set()
-        
+        # self.buttn_sell = about.button_sel  
+          
+     
+
 class About(tk.Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
@@ -138,5 +140,4 @@ class About(tk.Toplevel):
         
      
             
-       
-      
+    

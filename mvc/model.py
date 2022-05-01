@@ -115,7 +115,7 @@ class Model:
 
 
     def open_file(self):
-        sys.version        
+        mb.showinfo(sys.version)        
 
 
 
