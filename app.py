@@ -1,6 +1,6 @@
 import tkinter as tk
 from model import Model
-from view import ExpancionFile, View
+from view import View, ExpancionFile
 from controller import Controller
 
 

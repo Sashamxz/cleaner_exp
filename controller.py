@@ -1,5 +1,6 @@
 from tkinter import messagebox as mb
 
+
 class Controller:
     def __init__(self, model, view, about):
         self.model = model
