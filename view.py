@@ -1,23 +1,32 @@
 import tkinter as tk
 
 
+version = "0.3.2"
+
+
 class View(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
         self.initUI()
         
+
         self.ent_dst_title = tk.Label(self, text='Введите абсолютный путь к каталогу назначения:')
         self.ent_src_title = tk.Label(self, text='Введите абсолютный путь к исходному каталогу:')
         self.ent_expansion_title = tk.Label(self, text='Введите расширения файла, например - (.txt) или " * " что бы выбрать все файлы: ')
         
+
         # data entry
         self.ent_src = tk.Entry(self, width=70 ) #Поле ввода исходного каталога
         self.ent_dst = tk.Entry(self, width=70 ) #Поле ввода  каталога назначения
         self.ent_expancion = tk.Entry(self, width=70) #Поле ввода расширения
         
+        # start button
+        self.butt_start = tk.Button(self, width=5, height=5, text="Старт", bg="lightgreen" )
+        self.butt_start.place(x=580, y=20)
         
         #grid
+        
         self.ent_src_title.grid(column=0, row=2, padx=10, sticky=tk.W)
         self.ent_src.grid(column=0, row=3, padx=10, sticky=tk.W)
         self.ent_dst_title.grid(column=0, row=4, padx=10, sticky=tk.W)
@@ -26,15 +35,11 @@ class View(tk.Frame):
         self.ent_expancion.grid(column=0, row=7, padx=10, sticky=tk.W)
 
   
-        # start button
-        self.butt_start = tk.Button(self, width=2, height=2, text="Старт", bg="lightgreen" )
-        self.butt_start.place(x=580, y=20)
+        
+       
         
 
      
-        
-  
-
         # self.window2 = tk.Toplevel()
         # self.window.geometry('600x400')
         # self.window.title('Help')
@@ -119,4 +124,35 @@ class ExpancionFile(tk.Toplevel):
         self.ent.pack(side=tk.LEFT, pady=5, padx=5 )
         self.button_sel.pack(side=tk.LEFT, pady=5, ipadx=2, ipady=2)
         
+
+class Helpt(tk.Toplevel):
+    def __init__(self,parent):
+        super().__init__(parent)
+        self.about_prog
+        self.help_user
+        self.version = version
+
+
+    def help_user(self):    
+        self.title('Help')
+        self.geometry('550x300')
+        about = '''
+        Абсолютный путь очень точно показывает где именно находится \n
+        файл, а относительный должен иметь обязательную привязку к какой-либо \n
+        отправной точкe, относительно которой и укзывается путь. \n
+        Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
+        путь к ней будет D:\\picture\\file.png, а относительно корневого \n
+        каталога можно указывать \\picture\\file.png '''
+        text_help = tk.Label(self ,justify=tk.LEFT,text=about)
+        text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
+        self.about_prog
+
+    def about_prog(self):
         
+        self.geometry('600x400')
+        self.title('About')
+        about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(self.version)
+        text_help = tk.Label(self,text=about)
+        text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
+          
+    

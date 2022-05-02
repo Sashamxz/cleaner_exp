@@ -10,7 +10,7 @@ from tkinter.filedialog import askopenfilename
 logger = logging.getLogger(__name__)
 FORMAT = "%(asctime)s - %(message)s"
 logging.basicConfig(format=FORMAT, level=logging.INFO, filename = 'log.txt' ) 
-__version = "0.3.2"
+
 
 
 class Model:
@@ -22,7 +22,7 @@ class Model:
    
 
 
-
+    #функция полученния данных от пользоваетля (срц, дст , расширения)
     def get_addr(self,ent_adr):
         field_num = self.field_num()[ent_adr]
         
@@ -113,33 +113,14 @@ class Model:
 
 
 
-
+    #Версия питона
     def open_file(self):
         mb.showinfo(sys.version)        
 
 
 
 
-    def help_user(self):
-        pass
-        # window = tk.Toplevel()
-        # window.geometry('600x400')
-        # window.title('Help')
-        # about = '''Абсолютный путь очень точно показывает где именно находится \n
-        # файл, а относительный должен иметь обязательную привязку к какой-либо \n
-        # отправной точкe, относительно которой и укзывается путь. \n
-        # Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
-        # путь к ней будет D:\\picture\\file.png, а относительно корневого \n
-        # каталога можно указывать \\picture\\file.png '''
-        # text_help = tk.Label(window ,text=about)
-        # text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
-        # window.mainloop()
-
-
-
-
-
-     
+    # о програме    
     def about_prog(self):
         pass
         # window = tk.Toplevel()
