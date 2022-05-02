@@ -17,13 +17,14 @@ class View(tk.Frame):
         
 
         # data entry
-        self.ent_src = tk.Entry(self, width=70 ) #Поле ввода исходного каталога
-        self.ent_dst = tk.Entry(self, width=70 ) #Поле ввода  каталога назначения
-        self.ent_expancion = tk.Entry(self, width=70) #Поле ввода расширения
+        self.ent_src = tk.Entry(self, width=67) #Поле ввода исходного каталога
+        self.ent_dst = tk.Entry(self, width=67 ) #Поле ввода  каталога назначения
+        self.ent_expancion = tk.Entry(self, width=67) #Поле ввода расширения
         
         # start button
-        self.butt_start = tk.Button(self, width=5, height=5, text="Старт", bg="lightgreen" )
-        self.butt_start.place(x=580, y=20)
+        self.butt_start = tk.Button(self,  text=" Старт ",bg="lightgreen"   )
+        self.butt_start.config(width=5, height=2, padx=1, pady=1)
+        self.butt_start.place(x=560, y=20)
         
         #grid
         

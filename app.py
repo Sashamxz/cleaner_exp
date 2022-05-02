@@ -10,7 +10,7 @@ class App(tk.Tk):
         super().__init__()
         
         self.title('Сортировка файлов по расширению')
-        self.geometry('700x500')
+        self.geometry('700x600')
         
         # create a view and place it on the root window
         view = View(self)
