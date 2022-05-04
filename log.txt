@@ -1,4 +1,0 @@
-2022-04-29 09:07:32,194 - file - 2.txt    moved || from --- /home/req/test/ || to--- /home/req/test/123
-2022-04-29 09:07:32,195 - file - 1.txt    moved || from --- /home/req/test/ || to--- /home/req/test/123
-2022-05-01 13:59:56,585 - file - 2.txt    moved || from --> /home/req/github/test || to--> /home/req/github/test/file
-2022-05-01 13:59:56,585 - file - 1.txt    moved || from --> /home/req/github/test || to--> /home/req/github/test/file

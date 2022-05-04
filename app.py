@@ -12,18 +12,18 @@ class App(tk.Tk):
         self.title('Сортировка файлов по расширению')
         self.geometry('700x600')
         
-        # create a view and place it on the root window
+        # создание окна и расположения
         view = View(self)
         view.grid(row=0, column=0, padx=5, pady=5)     
         expansc_file = ExpancionFile
         
-        # create a model
+        # создание модели
         model = Model(view.ent_src, view.ent_dst, view.ent_expancion, view.field_num)
         
-        # create a controller
+        # создание контроллера 
         controller = Controller(model, view, expansc_file)
 
-        # set the controller to view
+        # установка контролерра в отображении 
         view.set_controller(controller)
 
     

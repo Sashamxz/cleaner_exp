@@ -40,7 +40,6 @@ class Model:
 
             
     #Декоратор для передачи данных в функцию сортировки 
-    
     def take_data(func):   
         def wrapper(self, *args, **kwargs):    
             src_adr = self.get_addr(self.ent_src)
@@ -51,6 +50,7 @@ class Model:
         return wrapper
 
     
+
     # Функция сортировки  файлов
     @take_data
     def cleaner(self,src_adr,dst_adr,expancion_adr):
@@ -64,7 +64,8 @@ class Model:
             elif expancion_adr == '*' and os.path.abspath(_file) != dst_adr:
                 shutil.move(os.path.abspath(_file), dst_adr)
                 logging.info('file - %s    moved || from --> %s || to--> %s' %(_file,src_adr,dst_adr))
-                    
+
+
 
     # Вызываем функции и передаем  результат
     def main(self):
@@ -77,10 +78,11 @@ class Model:
             mb.showerror('error', ex)
             return 0    
 
+
+
     ###########Дополнительный функционал###########:
 
     #Определить расширение файла 
-
     def file_expancion(self):
         
         fiel_exp = askopenfilename()
@@ -97,6 +99,7 @@ class Model:
     #Меню/выход
     def exit_prog(self):
         sys.exit()         
+
 
 
     # #Определеяем ОС
@@ -120,15 +123,3 @@ class Model:
 
 
 
-    # о програме    
-    def about_prog(self):
-        pass
-        # window = tk.Toplevel()
-        # window.geometry('600x400')
-        # window.title('About')
-        # about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s'  %(__version)
-        # text_help = tk.Label(window ,text=about)
-        # text_help.pack(side=tk.LEFT, expand=True,padx=10, pady=10)
-        # window.mainloop()   
-
-    

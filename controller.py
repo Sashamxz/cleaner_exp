@@ -1,6 +1,9 @@
 from tkinter import messagebox as mb
 from view import Helpt
 
+
+
+
 class Controller:
     def __init__(self, model, view, expanc_file):
         self.model = model
@@ -27,7 +30,7 @@ class Controller:
         window_h.help_user()
         return window_h
 
-    # о програме 
+    # открытие окна о программе + версия
     def open_about_prog(self):
         window_a = self.helpt(self.view)
         window_a.about_prog()   
