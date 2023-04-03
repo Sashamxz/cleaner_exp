@@ -1,0 +1,10 @@
+2023-03-28 11:40:46,255 - file - 2.txt    moved || from --> /home/req/github/test/files/ || to--> /home/req/github/test/files/files2
+2023-03-28 11:40:46,255 - file - 11.txt    moved || from --> /home/req/github/test/files/ || to--> /home/req/github/test/files/files2
+2023-03-28 11:40:46,255 - file - 21.txt    moved || from --> /home/req/github/test/files/ || to--> /home/req/github/test/files/files2
+2023-03-28 11:40:46,255 - file - 1.txt    moved || from --> /home/req/github/test/files/ || to--> /home/req/github/test/files/files2
+2023-03-28 11:40:46,255 - file - log.txt    moved || from --> /home/req/github/test/files/ || to--> /home/req/github/test/files/files2
+2023-03-28 12:52:52,163 - file - 2.txt    moved || from --> /home/req/github/test/files/files2/ || to--> /home/req/github/test/files/
+2023-03-28 12:52:52,167 - file - 11.txt    moved || from --> /home/req/github/test/files/files2/ || to--> /home/req/github/test/files/
+2023-03-28 12:52:52,167 - file - 21.txt    moved || from --> /home/req/github/test/files/files2/ || to--> /home/req/github/test/files/
+2023-03-28 12:52:52,168 - file - 1.txt    moved || from --> /home/req/github/test/files/files2/ || to--> /home/req/github/test/files/
+2023-03-28 12:52:52,168 - file - log.txt    moved || from --> /home/req/github/test/files/files2/ || to--> /home/req/github/test/files/

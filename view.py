@@ -17,32 +17,33 @@ class View(tk.Frame):
             self, text='Введите абсолютный путь к исходному каталогу:')
         self.ent_expansion_title = tk.Label(
             self,
-            text='Введите расширения файла, например - (.txt) или " * " что бы выбрать все файлы: ')
-
+            text='Введите расширения файла, например - (.txt) или " * " \
+                 что бы выбрать все файлы: ')
 
         # поля entry
-        self.ent_src = tk.Entry(self, width=67)  # Поле ввода исходного каталога
+        # Поле ввода исходного каталога
+        self.ent_src = tk.Entry(self, width=67)
         self.chose_src = tk.Button(
             self, text='...', command=lambda: [
                 self.ent_src.delete(
                     '1', tk.END), self.ent_src.insert(
                     0, self.file_folder())])
         self.chose_src.config(width=1, height=1)
-        self.ent_dst = tk.Entry(self, width=67) # Поле ввода  каталога назначения
+        # Поле ввода  каталога назначения
+        self.ent_dst = tk.Entry(self, width=67)
         self.chose_dst = tk.Button(
             self, text='...', command=lambda: [
                 self.ent_dst.delete(
                     '1', tk.END), self.ent_dst.insert(
                     0, self.file_folder())])
         self.chose_dst.config(width=1, height=1)
-        self.ent_expancion = tk.Entry(self, width=67)  # Поле ввода расширения
+        # Поле ввода расширения
+        self.ent_expancion = tk.Entry(self, width=67)
         self.ent_expancion.insert(0, '.txt')
-
 
         # кнопка старт
         self.butt_start = tk.Button(self, text=" Старт ", bg="lightgreen")
         self.butt_start.config(width=3, height=2)
-
 
         # расположение
         self.ent_src_title.grid(column=0, row=2, padx=5, sticky=tk.W)
@@ -58,7 +59,6 @@ class View(tk.Frame):
         # set the controller
         self.controller = None
 
-
     def initUI(self):
         mainmenu = tk.Menu(self.parent)
         self.parent.config(menu=mainmenu)
@@ -66,7 +66,6 @@ class View(tk.Frame):
         self.helpmenu = tk.Menu(mainmenu, tearoff=0)
         mainmenu.add_cascade(label="Файл", menu=self.filemenu)
         mainmenu.add_cascade(label="Справка", menu=self.helpmenu)
-
 
     @classmethod
     def file_folder(cls):
@@ -79,7 +78,6 @@ class View(tk.Frame):
                 self.ent_expancion: 3
                 }
         return numb
-
 
     def set_controller(self, controller):
         """
@@ -95,8 +93,6 @@ class View(tk.Frame):
         """
         if self.controller:
             self.controller.main()
-
-
 
 
 class ExpancionFile(tk.Toplevel):
@@ -123,14 +119,14 @@ class Helpt(tk.Toplevel):
         self.help_user
         self.version = version
 
-
     # окно помощи пользователю
     def help_user(self):
         self.title('Help')
         self.geometry('550x300')
         about = '''
         Абсолютный путь очень точно показывает где именно находится \n
-        файл, а относительный должен иметь обязательную привязку к какой-либо \n
+        файл, а относительный должен иметь обязательную привязку к \n
+        какой-либо
         отправной точкe, относительно которой и укзывается путь. \n
         Например у нас есть картинка file.png на диске D:\\,  Абсолютный \n
         путь к ней будет D:\\picture\\file.png, а относительно корневого \n
@@ -139,13 +135,12 @@ class Helpt(tk.Toplevel):
         text_help.pack(side=tk.LEFT, expand=True, padx=10, pady=10)
         self.about_prog
 
-
-
     # о програме + версия
     def about_prog(self):
         self.geometry('600x400')
         self.title('About')
-        about = 'Cleaner expansion-програма для сортировки файлов по рассширению \n  Version - %s' % (
+        about = 'Cleaner expansion-програма для сортировки файлов \
+                по рассширению \n  Version - %s' % (
             self.version)
         text_help = tk.Label(self, text=about)
         text_help.pack(side=tk.LEFT, expand=True, padx=10, pady=10)

@@ -4,7 +4,6 @@ from view import View, ExpancionFile
 from controller import Controller
 
 
-
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
